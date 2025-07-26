@@ -45,3 +45,6 @@ export function throttle<T extends (...args: any[]) => any>(
     }
   }
 }
+
+// Re-export data helpers for convenience
+export * from './utils/data-helpers'

@@ -7,16 +7,16 @@ export const projectSchema = z.object({
   title: z.string().min(1, 'Title is required').max(100, 'Title must be less than 100 characters'),
   description: z.string().min(1, 'Description is required').max(200, 'Description must be less than 200 characters'),
   longDescription: z.string().min(1, 'Long description is required'),
-  image: z.string().url('Image must be a valid URL'),
-  gallery: z.array(z.string().url('Gallery images must be valid URLs')),
+  image: z.string().min(1, 'Image is required'),
+  gallery: z.array(z.string().min(1, 'Gallery image cannot be empty')),
   technologies: z.array(z.object({
     name: z.string().min(1, 'Technology name is required'),
     category: z.enum(['frontend', 'backend', 'database', 'tool']),
     icon: z.string().optional()
   })),
   category: z.enum(['web-app', 'e-commerce', 'corporate', 'mobile']),
-  liveUrl: z.string().url('Live URL must be valid').optional(),
-  githubUrl: z.string().url('GitHub URL must be valid').optional(),
+  liveUrl: z.string().min(1, 'Live URL cannot be empty').optional(),
+  githubUrl: z.string().min(1, 'GitHub URL cannot be empty').optional(),
   featured: z.boolean(),
   completedDate: z.date()
 })
@@ -28,7 +28,7 @@ export const serviceSchema = z.object({
   shortDescription: z.string().min(1, 'Short description is required').max(150, 'Short description must be less than 150 characters'),
   longDescription: z.string().min(1, 'Long description is required'),
   icon: z.string().min(1, 'Icon is required'),
-  features: z.array(z.string().min(1, 'Feature cannot be empty')),
+  features: z.array(z.string().min(1, 'Feature cannot be empty')).min(1, 'At least one feature is required'),
   process: z.array(z.object({
     step: z.number().positive('Step must be positive'),
     title: z.string().min(1, 'Step title is required'),
@@ -78,12 +78,12 @@ export const teamMemberSchema = z.object({
   name: z.string().min(1, 'Name is required').max(50, 'Name must be less than 50 characters'),
   role: z.string().min(1, 'Role is required').max(50, 'Role must be less than 50 characters'),
   bio: z.string().min(1, 'Bio is required').max(500, 'Bio must be less than 500 characters'),
-  image: z.string().url('Image must be a valid URL'),
+  image: z.string().min(1, 'Image is required'),
   skills: z.array(z.string().min(1, 'Skill cannot be empty')),
   social: z.object({
-    linkedin: z.string().url('LinkedIn URL must be valid').optional(),
-    github: z.string().url('GitHub URL must be valid').optional(),
-    twitter: z.string().url('Twitter URL must be valid').optional()
+    linkedin: z.string().min(1, 'LinkedIn URL cannot be empty').optional(),
+    github: z.string().min(1, 'GitHub URL cannot be empty').optional(),
+    twitter: z.string().min(1, 'Twitter URL cannot be empty').optional()
   })
 })
 
