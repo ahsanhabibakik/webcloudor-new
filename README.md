@@ -1,53 +1,122 @@
-# Web Agency App
+# Modern Web Agency Showcase
 
-Welcome to the Web Agency App! This project is a Next.js application designed for a web development services agency. Below you will find information on how to set up and run the application, as well as an overview of its structure and features.
+A cutting-edge web agency showcase built with the latest modern web technologies.
 
-## Getting Started
+## 🚀 Tech Stack
 
-To get started with the Web Agency App, follow these steps:
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **shadcn/ui** - Modern component library
+- **Framer Motion** - Smooth animations
+- **pnpm** - Fast, disk space efficient package manager
+- **Jest & Testing Library** - Testing framework
+- **ESLint & Prettier** - Code quality and formatting
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/web-agency-app.git
-   cd web-agency-app
-   ```
+## 🛠️ Getting Started
 
-2. **Install dependencies:**
-   Make sure you have Node.js installed. Then run:
-   ```bash
-   npm install
-   ```
+### Prerequisites
 
-3. **Run the application:**
-   Start the development server with:
-   ```bash
-   npm run dev
-   ```
-   The application will be available at `http://localhost:3000`.
+- Node.js 18+ 
+- pnpm (recommended) or npm
 
-## Project Structure
+### Installation
 
-- **src/pages/index.tsx**: The main entry point for the application, rendering the homepage.
-- **src/components/Navbar.tsx**: Contains the navigation bar component with links to different sections.
-- **src/styles/globals.css**: Global CSS styles for the application.
-- **src/lib/utils.ts**: Utility functions for common tasks throughout the application.
-- **public/favicon.ico**: The favicon for the website.
+1. Clone the repository:
 
-## Dependencies
+```bash
+git clone <repository-url>
+cd web-agency-app
+```
 
-This project uses the following key dependencies:
+2. Install dependencies:
 
-- **Next.js**: A React framework for building server-side rendered applications.
-- **Shadcn**: A library for building UI components.
+```bash
+pnpm install
+```
 
-## Contributing
+3. Run the development server:
 
-If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
+```bash
+pnpm dev
+```
 
-## License
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+## 📝 Available Scripts
 
-## Acknowledgments
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm type-check` - Run TypeScript type checking
+- `pnpm test` - Run tests
+- `pnpm test:watch` - Run tests in watch mode
+- `pnpm test:coverage` - Run tests with coverage
 
-Thank you for checking out the Web Agency App! We hope you find it useful for your web development needs.
+## 🏗️ Project Structure
+
+```
+src/
+├── app/                 # Next.js App Router pages
+│   ├── globals.css     # Global styles
+│   ├── layout.tsx      # Root layout
+│   └── page.tsx        # Homepage
+├── components/         # Reusable components
+│   └── ui/            # shadcn/ui components
+├── lib/               # Utility functions
+├── types/             # TypeScript type definitions
+└── __tests__/         # Test files
+```
+
+## 🎨 Features
+
+- ✅ Modern Next.js 15 with App Router
+- ✅ TypeScript with strict configuration
+- ✅ Tailwind CSS 4 with custom design system
+- ✅ shadcn/ui components
+- ✅ Framer Motion animations
+- ✅ Responsive design
+- ✅ Accessibility features
+- ✅ Testing setup with Jest
+- ✅ ESLint and Prettier configuration
+- ✅ Performance optimizations
+
+## 🧪 Testing
+
+Run the test suite:
+
+```bash
+pnpm test
+```
+
+Run tests in watch mode:
+
+```bash
+pnpm test:watch
+```
+
+Generate coverage report:
+
+```bash
+pnpm test:coverage
+```
+
+## 📦 Building for Production
+
+```bash
+pnpm build
+pnpm start
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
