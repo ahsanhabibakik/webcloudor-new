@@ -304,7 +304,7 @@ export const getTeamStats = (members: TeamMember[]) => {
   }, {} as Record<string, number>)
   
   const roleCounts = members.reduce((acc, member) => {
-    const role = member.role.split(' ')[0] // Get first word of role
+    const role = member.role.split(' ')[0] || 'Unknown' // Get first word of role
     acc[role] = (acc[role] || 0) + 1
     return acc
   }, {} as Record<string, number>)

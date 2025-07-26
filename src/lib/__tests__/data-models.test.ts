@@ -163,8 +163,8 @@ describe('Data Queries', () => {
       expect(recent.length).toBeLessThanOrEqual(2)
       // Should be sorted by completion date (most recent first)
       if (recent.length > 1) {
-        expect(recent[0].completedDate.getTime()).toBeGreaterThanOrEqual(
-          recent[1].completedDate.getTime()
+        expect(recent[0]!.completedDate.getTime()).toBeGreaterThanOrEqual(
+          recent[1]!.completedDate.getTime()
         )
       }
     })
@@ -240,8 +240,8 @@ describe('Data Utilities', () => {
     it('should sort by date descending', () => {
       const sorted = sortByDate(mockProjects, 'desc')
       for (let i = 0; i < sorted.length - 1; i++) {
-        expect(sorted[i].completedDate.getTime()).toBeGreaterThanOrEqual(
-          sorted[i + 1].completedDate.getTime()
+        expect(sorted[i]!.completedDate.getTime()).toBeGreaterThanOrEqual(
+          sorted[i + 1]!.completedDate.getTime()
         )
       }
     })
@@ -249,8 +249,8 @@ describe('Data Utilities', () => {
     it('should sort by title ascending', () => {
       const sorted = sortByTitle(mockProjects, 'asc')
       for (let i = 0; i < sorted.length - 1; i++) {
-        expect(sorted[i].title.toLowerCase().localeCompare(
-          sorted[i + 1].title.toLowerCase()
+        expect(sorted[i]!.title.toLowerCase().localeCompare(
+          sorted[i + 1]!.title.toLowerCase()
         )).toBeLessThanOrEqual(0)
       }
     })
