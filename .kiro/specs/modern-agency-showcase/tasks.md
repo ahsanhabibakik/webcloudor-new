@@ -61,12 +61,17 @@
   - Build app/projects/page.tsx for portfolio showcase
   - Create ProjectCard component with hover effects and shadcn/ui styling
 
+
+
+
+
   - Implement project filtering and category system
   - Add project detail pages with dynamic routing (app/projects/[id]/page.tsx)
   - Include technology tags, live demo links, and image galleries
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-- [ ] 6. Implement services page with process visualization
+- [-] 6. Implement services page with process visualization
+
 
 
 
