@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
@@ -103,5 +108,7 @@ const nextConfig = {
   // Generate source maps in production for better debugging
   productionBrowserSourceMaps: false, // Disable in production for better performance
 }
+
+module.exports = withBundleAnalyzer(nextConfig)
 
 module.exports = nextConfig
