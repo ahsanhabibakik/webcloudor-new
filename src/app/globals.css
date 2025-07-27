@@ -230,26 +230,109 @@ ccessibility utilities */
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+  :root {
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    --primary: 0 0 0;
+    --primary-foreground: 255 255 255;
+    --secondary: 240 240 240;
+    --secondary-foreground: 0 0 0;
+    --muted: 240 240 240;
+    --muted-foreground: 0 0 0;
+    --accent: 240 240 240;
+    --accent-foreground: 0 0 0;
+    --border: 0 0 0;
+    --input: 0 0 0;
+    --ring: 0 0 0;
+  }
+  
   .bg-slate-50,
-  .bg-slate-100 {
+  .bg-slate-100,
+  .bg-gray-50,
+  .bg-gray-100 {
     background-color: white !important;
   }
   
   .text-slate-600,
-  .text-slate-700 {
+  .text-slate-700,
+  .text-gray-600,
+  .text-gray-700,
+  .text-muted-foreground {
     color: black !important;
   }
   
   .border-slate-200,
-  .border-slate-300 {
+  .border-slate-300,
+  .border-gray-200,
+  .border-gray-300 {
     border-color: black !important;
+    border-width: 2px !important;
+  }
+
+  /* Ensure sufficient contrast for interactive elements */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    border: 2px solid black !important;
+  }
+
+  button:hover,
+  a:hover {
+    background-color: black !important;
+    color: white !important;
   }
 }
 
 /* Focus visible improvements */
 *:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 3px solid #2563eb;
   outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Enhanced focus styles for interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[role="link"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Skip link enhanced styles */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 999999;
+  padding: 12px 16px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.skip-link:focus {
+  position: absolute !important;
+  left: 20px !important;
+  top: 20px !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  z-index: 999999 !important;
 }
 
 /* Ensure minimum touch target size */
@@ -258,8 +341,54 @@ ccessibility utilities */
   a,
   input,
   select,
-  textarea {
+  textarea,
+  [role="button"],
+  [role="link"],
+  [tabindex] {
     min-height: 44px;
     min-width: 44px;
+  }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Keyboard navigation indicators */
+.keyboard-navigation-active *:focus {
+  outline: 3px solid #2563eb !important;
+  outline-offset: 2px !important;
+}
+
+/* Improve text readability */
+@media (prefers-contrast: high) {
+  p, span, div, h1, h2, h3, h4, h5, h6 {
+    text-shadow: none !important;
+  }
+}
+
+/* Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Disable transform animations */
+  * {
+    transform: none !important;
   }
 }

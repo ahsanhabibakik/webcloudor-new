@@ -94,15 +94,21 @@ function HeroContent() {
 
   return (
     <NoScript fallback={<StaticHeroContent />}>
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/20">
+      <section 
+        className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/20"
+        aria-labelledby="hero-title"
+        role="banner"
+      >
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             {/* Animated Title */}
             <motion.h1
+              id="hero-title"
               variants={titleVariants}
               initial="hidden"
               animate="visible"
               className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              aria-live="polite"
             >
               {words.map((word, index) => (
                 <motion.span
@@ -117,7 +123,10 @@ function HeroContent() {
 
             {/* Subtitle */}
             <FadeIn delay={0.8} direction="up">
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p 
+                className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                aria-describedby="hero-title"
+              >
                 We're a modern web agency specializing in cutting-edge development, 
                 stunning design, and strategic digital solutions that transform your business.
               </p>
@@ -125,17 +134,40 @@ function HeroContent() {
 
             {/* Call to Action Buttons */}
             <FadeIn delay={1.2} direction="up">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                <Button size="lg" className="text-lg px-8 py-6" asChild>
-                  <Link href="/contact">
+              <div 
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+                role="group"
+                aria-label="Primary actions"
+              >
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6" 
+                  asChild
+                >
+                  <Link 
+                    href="/contact"
+                    aria-describedby="cta-description"
+                  >
                     Start Your Project
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-6" asChild>
-                  <Link href="/projects">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="text-lg px-8 py-6" 
+                  asChild
+                >
+                  <Link 
+                    href="/projects"
+                    aria-describedby="portfolio-description"
+                  >
                     View Our Work
                   </Link>
                 </Button>
+                <div className="sr-only">
+                  <span id="cta-description">Contact us to discuss your project requirements</span>
+                  <span id="portfolio-description">Browse our portfolio of completed projects</span>
+                </div>
               </div>
             </FadeIn>
 
@@ -149,9 +181,14 @@ function HeroContent() {
                   ease: "easeInOut"
                 }}
                 className="flex flex-col items-center text-muted-foreground"
+                role="img"
+                aria-label="Scroll down indicator"
               >
-                <span className="text-sm mb-2">Discover More</span>
-                <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center">
+                <span className="text-sm mb-2" aria-hidden="true">Discover More</span>
+                <div 
+                  className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center"
+                  aria-hidden="true"
+                >
                   <motion.div
                     animate={prefersReducedMotion ? {} : { y: [0, 12, 0] }}
                     transition={prefersReducedMotion ? {} : {

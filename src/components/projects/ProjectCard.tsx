@@ -55,21 +55,34 @@ function ProjectCardContent({ project }: ProjectCardProps) {
   }
 
   return (
-    <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+    <Card 
+      className="group overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+      role="article"
+      aria-labelledby={`project-title-${project.id}`}
+    >
       {/* Image Container */}
       <div className="relative aspect-video overflow-hidden bg-gray-100">
         <SafeImage
           src={project.image}
-          alt={`${project.title} project screenshot`}
+          alt={`Screenshot of ${project.title} project showing the main interface`}
           fill
           className="object-cover transition-all duration-500 group-hover:scale-105"
           fallbackClassName="aspect-video"
         />
         
         {/* Overlay with links */}
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+        <div 
+          className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+          role="group"
+          aria-label="Project actions"
+        >
           <Link href={`/projects/${project.id}`}>
-            <Button size="sm" variant="secondary" className="bg-white/90 hover:bg-white">
+            <Button 
+              size="sm" 
+              variant="secondary" 
+              className="bg-white/90 hover:bg-white"
+              aria-label={`View detailed information about ${project.title}`}
+            >
               View Details
             </Button>
           </Link>
@@ -79,9 +92,9 @@ function ProjectCardContent({ project }: ProjectCardProps) {
                 href={project.liveUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                title={`View live demo of ${project.title}`}
+                aria-label={`View live demo of ${project.title} (opens in new tab)`}
               >
-                <ExternalLink className="w-4 h-4 mr-1" />
+                <ExternalLink className="w-4 h-4 mr-1" aria-hidden="true" />
                 Live Demo
               </a>
             </Button>

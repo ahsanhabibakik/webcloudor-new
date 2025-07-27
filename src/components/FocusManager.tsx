@@ -152,7 +152,7 @@ export function FocusAnnouncer({
   return (
     <div
       aria-live={priority}
-      aria-atomic="true"
+      aria-atomic={true}
       className="sr-only"
     >
       {message}
