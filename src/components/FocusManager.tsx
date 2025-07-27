@@ -19,7 +19,7 @@ export function FocusManager({
   className
 }: FocusManagerProps) {
   const previousActiveElement = useRef<HTMLElement | null>(null)
-  const containerRef = useFocusTrap(trapFocus)
+  const containerRef = useFocusTrap(trapFocus) as React.RefObject<HTMLDivElement>
 
   useEffect(() => {
     if (restoreFocus) {

@@ -113,12 +113,16 @@
 
 
 
+
   - Create app/services/page.tsx with service offerings
   - Build ServiceCard components using shadcn/ui cards and icons
   - Implement process step visualization with timeline animations
   - Add clear call-to-action buttons linking to contact
-  - Include scroll-triggered animations for service reveals
-- [ ] 7. Build contact page with form validation
+  --Include scroll-triggered animations for serv
+ice reveals
+- [x] 7. Build contact page with form validation
+
+
 
 
 
