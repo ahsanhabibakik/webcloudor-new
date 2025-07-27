@@ -3,22 +3,32 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { FadeIn } from '@/components/animations/FadeIn'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { NoScript } from '@/components/NoScript'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-export function Hero() {
+function HeroContent() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
+    setIsClient(true)
     
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
+    try {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      setPrefersReducedMotion(mediaQuery.matches)
+      
+      const handleChange = (e: MediaQueryListEvent) => {
+        setPrefersReducedMotion(e.matches)
+      }
+      
+      mediaQuery.addEventListener('change', handleChange)
+      return () => mediaQuery.removeEventListener('change', handleChange)
+    } catch (error) {
+      console.warn('Error setting up motion preferences:', error)
+      setPrefersReducedMotion(true) // Default to reduced motion on error
     }
-    
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
   const titleVariants = {

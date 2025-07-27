@@ -46,7 +46,9 @@
 
 
 
-- [ ] 4. Build homepage with hero section and animations
+- [-] 4. Build homepage with hero section and animations
+
+
 
 
 
@@ -64,6 +66,10 @@
   - _Requirements: 1.1, 1.2, 6.1, 6.2, 6.5_
 
 - [ ] 5. Create projects showcase page and components
+
+
+
+
 
 
 
@@ -179,7 +185,10 @@ g Framer Motion
   - Test on various devices and browsers
   - _Requirements: 5.1_
 
-- [ ] 13. Add error handling and fallback states
+- [-] 13. Add error handling and fallback states
+
+
+
 
 
 

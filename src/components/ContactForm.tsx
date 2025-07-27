@@ -111,12 +111,21 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       // Clear any existing errors
       setErrors({})
       
-      // Submit form
+      // Submit form with proper error handling
       if (onSubmit) {
         await onSubmit(validationResult.data)
       } else {
-        // Default submission behavior (simulate API call)
-        await new Promise(resolve => setTimeout(resolve, 2000))
+        // Default submission behavior (simulate API call with potential failure)
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            // Simulate random network failures for testing
+            if (Math.random() > 0.8 && process.env.NODE_ENV === 'development') {
+              reject(new Error('Network error'))
+            } else {
+              resolve(undefined)
+            }
+          }, 2000)
+        })
       }
       
       setSubmitStatus('success')
@@ -134,8 +143,21 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       })
       
     } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
-      setSubmitMessage('Sorry, there was an error sending your message. Please try again.')
+      
+      // Provide specific error messages based on error type
+      if (error instanceof Error) {
+        if (error.message.includes('Network')) {
+          setSubmitMessage('Network error. Please check your connection and try again.')
+        } else if (error.message.includes('timeout')) {
+          setSubmitMessage('Request timed out. Please try again.')
+        } else {
+          setSubmitMessage('Sorry, there was an error sending your message. Please try again.')
+        }
+      } else {
+        setSubmitMessage('An unexpected error occurred. Please try again later.')
+      }
     } finally {
       setIsSubmitting(false)
     }

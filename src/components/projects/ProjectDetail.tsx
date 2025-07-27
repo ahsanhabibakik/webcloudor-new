@@ -73,9 +73,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
     if (!acc[tech.category]) {
       acc[tech.category] = []
     }
-    if (acc[tech.category]) {
-      acc[tech.category].push(tech)
-    }
+    acc[tech.category]!.push(tech)
     return acc
   }, {} as Record<string, typeof project.technologies>)
 
