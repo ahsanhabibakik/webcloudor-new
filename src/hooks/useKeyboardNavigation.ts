@@ -74,6 +74,7 @@ export function useKeyboardNavigation(options: UseKeyboardNavigationOptions = {}
       document.addEventListener('keydown', handleKeyDown)
       return () => document.removeEventListener('keydown', handleKeyDown)
     }
+    return undefined
   }, [handleKeyDown, enabled])
 
   return { handleKeyDown }
