@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useScreenReaderAnnouncement } from '@/hooks/useKeyboardNavigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -39,6 +40,7 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const { announce } = useScreenReaderAnnouncement()
 
   const {
     register,
@@ -69,10 +71,13 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
       }
       
       setSubmitStatus('success')
+      announce('Form submitted successfully! We will get back to you within 24 hours.', 'assertive')
       reset()
     } catch (error) {
       setSubmitStatus('error')
-      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
+      const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.'
+      setErrorMessage(message)
+      announce(`Error: ${message}`, 'assertive')
     } finally {
       setIsSubmitting(false)
     }
@@ -124,9 +129,13 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
                 {...register('name')}
                 placeholder="Your full name"
                 className={errors.name ? 'border-red-500' : ''}
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? 'name-error' : undefined}
               />
               {errors.name && (
-                <p className="text-sm text-red-600">{errors.name.message}</p>
+                <p id="name-error" className="text-sm text-red-600" role="alert">
+                  {errors.name.message}
+                </p>
               )}
             </motion.div>
 
@@ -138,9 +147,13 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
                 {...register('email')}
                 placeholder="your.email@company.com"
                 className={errors.email ? 'border-red-500' : ''}
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
               />
               {errors.email && (
-                <p className="text-sm text-red-600">{errors.email.message}</p>
+                <p id="email-error" className="text-sm text-red-600" role="alert">
+                  {errors.email.message}
+                </p>
               )}
             </motion.div>
           </div>

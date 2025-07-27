@@ -51,8 +51,19 @@ export default function Navbar({ className }: NavbarProps) {
     setIsOpen(false)
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape' && isOpen) {
+      setIsOpen(false)
+    }
+  }
+
   return (
-    <nav className={cn("bg-white shadow-sm border-b sticky top-0 z-40", className)}>
+    <nav 
+      className={cn("bg-white shadow-sm border-b sticky top-0 z-40", className)}
+      role="navigation"
+      aria-label="Main navigation"
+      onKeyDown={handleKeyDown}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -64,13 +75,15 @@ export default function Navbar({ className }: NavbarProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8" role="menubar">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
+                role="menuitem"
+                aria-current={pathname === item.href ? 'page' : undefined}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary relative py-2",
+                  "text-sm font-medium transition-colors hover:text-primary relative py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm",
                   pathname === item.href
                     ? "text-primary"
                     : "text-muted-foreground"
@@ -78,7 +91,10 @@ export default function Navbar({ className }: NavbarProps) {
               >
                 {item.title}
                 {pathname === item.href && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                  <span 
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    aria-hidden="true"
+                  />
                 )}
               </Link>
             ))}
@@ -88,23 +104,37 @@ export default function Navbar({ className }: NavbarProps) {
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="h-9 w-9"
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-menu"
+                  aria-label="Toggle navigation menu"
+                >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetContent 
+                side="right" 
+                className="w-[300px] sm:w-[400px]"
+                id="mobile-menu"
+                aria-labelledby="mobile-menu-title"
+              >
                 <SheetHeader>
-                  <SheetTitle className="text-left">Navigation</SheetTitle>
+                  <SheetTitle id="mobile-menu-title" className="text-left">Navigation</SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col space-y-4 mt-6">
+                <nav className="flex flex-col space-y-4 mt-6" role="menu">
                   {navItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={handleLinkClick}
+                      role="menuitem"
+                      aria-current={pathname === item.href ? 'page' : undefined}
                       className={cn(
-                        "text-sm font-medium transition-colors hover:text-primary px-2 py-3 rounded-md hover:bg-accent",
+                        "text-sm font-medium transition-colors hover:text-primary px-2 py-3 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
                         pathname === item.href
                           ? "text-primary bg-accent"
                           : "text-muted-foreground"

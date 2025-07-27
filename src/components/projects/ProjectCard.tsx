@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { ExternalLink, Github, Calendar } from 'lucide-react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { SafeImage } from '@/components/SafeImage'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation'
 import type { Project } from '@/types'
 
 interface ProjectCardProps {
