@@ -38,19 +38,31 @@ function ServiceCardContent({ service }: ServiceCardProps) {
       className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      role="article"
+      aria-labelledby={`service-title-${service.id}`}
+      tabIndex={0}
     >
       <CardHeader className="pb-4">
         <div className="flex items-center gap-3 mb-3">
-          <div className="p-2 rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+          <div 
+            className="p-2 rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300"
+            aria-hidden="true"
+          >
             <IconComponent size={24} />
           </div>
           <div className="flex-1">
-            <CardTitle className="text-xl group-hover:text-blue-600 transition-colors duration-300">
+            <CardTitle 
+              id={`service-title-${service.id}`}
+              className="text-xl group-hover:text-blue-600 transition-colors duration-300"
+            >
               {service.title}
             </CardTitle>
           </div>
         </div>
-        <CardDescription className="text-slate-600 leading-relaxed">
+        <CardDescription 
+          className="text-slate-600 leading-relaxed"
+          aria-describedby={`service-title-${service.id}`}
+        >
           {service.shortDescription}
         </CardDescription>
       </CardHeader>
@@ -60,19 +72,23 @@ function ServiceCardContent({ service }: ServiceCardProps) {
           {/* Key Features */}
           <div>
             <h4 className="font-semibold text-slate-900 mb-2">Key Features:</h4>
-            <div className="space-y-1">
+            <ul 
+              className="space-y-1"
+              role="list"
+              aria-label={`Key features of ${service.title} service`}
+            >
               {service.features.slice(0, 4).map((feature, index) => (
-                <div key={index} className="flex items-start gap-2 text-sm text-slate-600">
-                  <CheckCircle size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
+                <li key={index} className="flex items-start gap-2 text-sm text-slate-600">
+                  <CheckCircle size={16} className="text-green-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>{feature}</span>
-                </div>
+                </li>
               ))}
               {service.features.length > 4 && (
-                <div className="text-sm text-slate-500 italic">
+                <li className="text-sm text-slate-500 italic">
                   +{service.features.length - 4} more features
-                </div>
+                </li>
               )}
-            </div>
+            </ul>
           </div>
 
           {/* Pricing Preview */}
@@ -80,7 +96,10 @@ function ServiceCardContent({ service }: ServiceCardProps) {
             <div>
               <h4 className="font-semibold text-slate-900 mb-2">Starting from:</h4>
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-blue-600">
+                <span 
+                  className="text-2xl font-bold text-blue-600"
+                  aria-label={`Starting price: ${service.pricing[0].price.split(' - ')[0]}`}
+                >
                   {service.pricing[0].price.split(' - ')[0]}
                 </span>
                 {service.pricing.find(tier => tier.popular) && (
@@ -95,7 +114,11 @@ function ServiceCardContent({ service }: ServiceCardProps) {
       </CardContent>
 
       <CardFooter className="pt-0">
-        <div className="flex gap-2">
+        <div 
+          className="flex gap-2"
+          role="group"
+          aria-label={`Actions for ${service.title} service`}
+        >
           <Button 
             asChild 
             variant="outline" 
@@ -125,7 +148,8 @@ function ServiceCardContent({ service }: ServiceCardProps) {
                 size={16} 
                 className={`transition-transform duration-300 ${
                   isHovered ? 'translate-x-1' : ''
-                }`} 
+                }`}
+                aria-hidden="true"
               />
             </Link>
           </Button>

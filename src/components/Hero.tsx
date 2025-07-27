@@ -67,7 +67,7 @@ function HeroContent() {
             Crafting Digital Experiences That Drive Results
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We're a modern web agency specializing in cutting-edge development, 
+            We&apos;re a modern web agency specializing in cutting-edge development, 
             stunning design, and strategic digital solutions that transform your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
@@ -127,7 +127,7 @@ function HeroContent() {
                 className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
                 aria-describedby="hero-title"
               >
-                We're a modern web agency specializing in cutting-edge development, 
+                WeWeWeWeWe'reapos;reapos;reapos;reapos;re a modern web agency specializing in cutting-edge development, 
                 stunning design, and strategic digital solutions that transform your business.
               </p>
             </FadeIn>

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import type { ProjectCategory, BudgetRange } from '@/types'
+import type { } from '@/types'
 
 // Project validation schema
 export const projectSchema = z.object({

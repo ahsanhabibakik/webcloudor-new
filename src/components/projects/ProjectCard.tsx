@@ -121,30 +121,50 @@ function ProjectCardContent({ project }: ProjectCardProps) {
       <CardContent className="p-6">
         {/* Title and Description */}
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-            <Link href={`/projects/${project.id}`}>
+          <h3 
+            id={`project-title-${project.id}`}
+            className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors"
+          >
+            <Link 
+              href={`/projects/${project.id}`}
+              aria-describedby={`project-desc-${project.id}`}
+            >
               {project.title}
             </Link>
           </h3>
-          <p className="text-gray-600 text-sm line-clamp-2">
+          <p 
+            id={`project-desc-${project.id}`}
+            className="text-gray-600 text-sm line-clamp-2"
+          >
             {project.description}
           </p>
         </div>
 
         {/* Technologies */}
         <div className="mb-4">
-          <div className="flex flex-wrap gap-1">
+          <h4 className="sr-only">Technologies used</h4>
+          <div 
+            className="flex flex-wrap gap-1"
+            role="list"
+            aria-label="Technologies used in this project"
+          >
             {project.technologies.slice(0, 4).map((tech) => (
               <Badge
                 key={tech.name}
                 variant="outline"
                 className="text-xs bg-gray-50 hover:bg-gray-100"
+                role="listitem"
               >
                 {tech.name}
               </Badge>
             ))}
             {project.technologies.length > 4 && (
-              <Badge variant="outline" className="text-xs bg-gray-50">
+              <Badge 
+                variant="outline" 
+                className="text-xs bg-gray-50"
+                role="listitem"
+                aria-label={`${project.technologies.length - 4} additional technologies`}
+              >
                 +{project.technologies.length - 4} more
               </Badge>
             )}
@@ -153,30 +173,39 @@ function ProjectCardContent({ project }: ProjectCardProps) {
 
         {/* Completion Date */}
         <div className="flex items-center text-sm text-gray-500 mb-4">
-          <Calendar className="w-4 h-4 mr-1" />
-          Completed {formatDate(project.completedDate)}
+          <Calendar className="w-4 h-4 mr-1" aria-hidden="true" />
+          <time dateTime={project.completedDate.toISOString()}>
+            Completed {formatDate(project.completedDate)}
+          </time>
         </div>
       </CardContent>
 
       <CardFooter className="px-6 py-4 bg-gray-50 border-t">
         <div className="flex items-center justify-between w-full">
           <Link href={`/projects/${project.id}`}>
-            <Button variant="outline" size="sm">
+            <Button 
+              variant="outline" 
+              size="sm"
+              aria-label={`Learn more about ${project.title} project`}
+            >
               Learn More
             </Button>
           </Link>
           
-          <div className="flex items-center gap-2">
+          <div 
+            className="flex items-center gap-2"
+            role="group"
+            aria-label="External project links"
+          >
             {project.githubUrl && (
               <Button size="sm" variant="ghost" className="p-2" asChild>
                 <a 
                   href={project.githubUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  title={`View source code for ${project.title}`}
+                  aria-label={`View source code for ${project.title} on GitHub (opens in new tab)`}
                 >
-                  <Github className="w-4 h-4" />
-                  <span className="sr-only">View source code</span>
+                  <Github className="w-4 h-4" aria-hidden="true" />
                 </a>
               </Button>
             )}
@@ -186,10 +215,9 @@ function ProjectCardContent({ project }: ProjectCardProps) {
                   href={project.liveUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  title={`View live demo of ${project.title}`}
+                  aria-label={`View live demo of ${project.title} (opens in new tab)`}
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  <span className="sr-only">View live demo</span>
+                  <ExternalLink className="w-4 h-4" aria-hidden="true" />
                 </a>
               </Button>
             )}

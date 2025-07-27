@@ -54,6 +54,17 @@ export default function Navbar({ className }: NavbarProps) {
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Escape' && isOpen) {
       setIsOpen(false)
+      // Return focus to the menu button
+      const menuButton = document.querySelector('[aria-expanded="true"]') as HTMLElement
+      menuButton?.focus()
+    }
+  }
+
+  const handleMenuItemKeyDown = (event: React.KeyboardEvent, href: string) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      handleLinkClick()
+      window.location.href = href
     }
   }
 

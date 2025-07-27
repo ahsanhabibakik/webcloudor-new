@@ -6,7 +6,7 @@ import { ProjectFilter } from './ProjectFilter'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { LoadingState } from '@/components/LoadingState'
 import { mockProjects } from '@/lib/data/projects'
-import type { Project, ProjectCategory } from '@/types'
+import type { ProjectCategory } from '@/types'
 
 function ProjectsShowcaseContent() {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'all'>('all')

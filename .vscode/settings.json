@@ -9,6 +9,5 @@
         "subfolders",
         "taskapp",
         "wireframes"
-    ],
-    "typescript.autoClosingTags": false
+    ]
 }

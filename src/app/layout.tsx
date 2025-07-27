@@ -8,6 +8,9 @@ import { PerformanceMonitor } from '@/components/PerformanceMonitor'
 import { SkipLink } from '@/components/SkipLink'
 import { AccessibilityProvider } from '@/components/AccessibilityProvider'
 import { AccessibilityTest } from '@/components/AccessibilityTest'
+import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider'
+import { AccessibilityAnnouncerProvider, RouteAnnouncer } from '@/components/AccessibilityAnnouncer'
+import { GlobalKeyboardShortcuts } from '@/components/GlobalKeyboardShortcuts'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -54,26 +57,32 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <AccessibilityProvider>
-          <SkipLink />
-          <PerformanceMonitor />
-          <div className="min-h-screen flex flex-col">
-            <ErrorBoundary>
-              <header role="banner">
-                <Navbar />
-              </header>
-            </ErrorBoundary>
-            <main id="main-content" role="main" className="flex-1" tabIndex={-1}>
-              <ErrorBoundary>
-                {children}
-              </ErrorBoundary>
-            </main>
-            <ErrorBoundary>
-              <footer role="contentinfo">
-                <Footer />
-              </footer>
-            </ErrorBoundary>
-          </div>
-          {process.env.NODE_ENV === 'development' && <AccessibilityTest />}
+          <KeyboardNavigationProvider>
+            <AccessibilityAnnouncerProvider>
+              <SkipLink />
+              <RouteAnnouncer />
+              <GlobalKeyboardShortcuts />
+              <PerformanceMonitor />
+              <div className="min-h-screen flex flex-col">
+                <ErrorBoundary>
+                  <header role="banner">
+                    <Navbar />
+                  </header>
+                </ErrorBoundary>
+                <main id="main-content" role="main" className="flex-1" tabIndex={-1}>
+                  <ErrorBoundary>
+                    {children}
+                  </ErrorBoundary>
+                </main>
+                <ErrorBoundary>
+                  <footer role="contentinfo">
+                    <Footer />
+                  </footer>
+                </ErrorBoundary>
+              </div>
+              {process.env.NODE_ENV === 'development' && <AccessibilityTest />}
+            </AccessibilityAnnouncerProvider>
+          </KeyboardNavigationProvider>
         </AccessibilityProvider>
       </body>
     </html>
