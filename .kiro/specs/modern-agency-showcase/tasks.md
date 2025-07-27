@@ -46,7 +46,8 @@
 
 
 
-- [-] 4. Build homepage with hero section and animations
+- [x] 4. Build homepage with hero section and animations
+
 
 
 
@@ -102,7 +103,9 @@
 
 
 
-- [ ] 6. Implement services page with process visualization
+- [x] 6. Implement services page with process visualization
+
+
 
 
 
@@ -115,7 +118,8 @@
   - Implement process step visualization with timeline animations
   - Add clear call-to-action buttons linking to contact
   - Include scroll-triggered animations for service reveals
-- [x] 7. Build contact page with form validation
+- [ ] 7. Build contact page with form validation
+
 
 
 
@@ -168,6 +172,7 @@ ts, and company culture
 
 
 - [ ] 10. Add accessibility features and keyboard navigation
+
 
 
 

@@ -143,7 +143,7 @@ export default function Navbar({ className }: NavbarProps) {
                       {item.title}
                     </Link>
                   ))}
-                </div>
+                </nav>
               </SheetContent>
             </Sheet>
           </div>

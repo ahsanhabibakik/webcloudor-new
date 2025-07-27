@@ -125,7 +125,7 @@ export default function ServicesPage() {
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help bring your vision to life. 
+              Let&apos;s discuss how we can help bring your vision to life. 
               Get in touch for a free consultation and project estimate.
             </p>
           </ScrollReveal>
