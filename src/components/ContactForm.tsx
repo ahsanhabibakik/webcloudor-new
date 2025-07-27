@@ -168,7 +168,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       <CardHeader>
         <CardTitle>Get In Touch</CardTitle>
         <CardDescription>
-          Tell us about your project and wewewewewewewewewewewe'llapos;llapos;llapos;llapos;llapos;llapos;llapos;llapos;llapos;llapos;ll get back to you within 24 hours.
+          Tell us about your project and wewewewewewewewewewewewe'llapos;llapos;llapos;llapos;llapos;llapos;llapos;llapos;llapos;llapos;llapos;ll get back to you within 24 hours.
         </CardDescription>
       </CardHeader>
       <CardContent>

@@ -57,7 +57,7 @@ export function ContactPageClient() {
               Get In Touch
             </motion.h1>
             <motion.p variants={itemVariants} className="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
-              Ready to start your next project? LetLetLetLetLetLetLet'sapos;sapos;sapos;sapos;sapos;sapos;s discuss how we can help bring your vision to life.
+              Ready to start your next project? LetLetLetLetLetLetLetLet'sapos;sapos;sapos;sapos;sapos;sapos;sapos;s discuss how we can help bring your vision to life.
             </motion.p>
           </motion.div>
         </div>

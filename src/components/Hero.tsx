@@ -127,7 +127,7 @@ function HeroContent() {
                 className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
                 aria-describedby="hero-title"
               >
-                WeWeWeWeWeWeWeWeWeWeWe'reapos;reapos;reapos;reapos;reapos;reapos;reapos;reapos;reapos;reapos;re a modern web agency specializing in cutting-edge development, 
+                WeWeWeWeWeWeWeWeWeWeWeWe'reapos;reapos;reapos;reapos;reapos;reapos;reapos;reapos;reapos;reapos;reapos;re a modern web agency specializing in cutting-edge development, 
                 stunning design, and strategic digital solutions that transform your business.
               </p>
             </FadeIn>

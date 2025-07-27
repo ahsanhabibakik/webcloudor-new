@@ -128,7 +128,7 @@ export function ExpertiseHighlights() {
                 Ready to Work Together?
               </h3>
               <p className="text-slate-600 mb-6">
-                LetLetLetLetLetLetLet'sapos;sapos;sapos;sapos;sapos;sapos;s discuss how our expertise can help bring your vision to life. 
+                LetLetLetLetLetLetLetLet'sapos;sapos;sapos;sapos;sapos;sapos;sapos;s discuss how our expertise can help bring your vision to life. 
                 We'd love to hear about your project and explore how we can collaborate.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
