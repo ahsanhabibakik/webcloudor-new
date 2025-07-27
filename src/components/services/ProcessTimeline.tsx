@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { NoScript } from '@/components/NoScript'
 import { 
   Search, 
   Palette, 
@@ -64,37 +66,119 @@ const colorMap = {
   red: 'bg-red-500 border-red-200'
 }
 
-export function ProcessTimeline() {
+function ProcessTimelineContent() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
+    setIsClient(true)
     
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
+    try {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      setPrefersReducedMotion(mediaQuery.matches)
+      
+      const handleChange = (e: MediaQueryListEvent) => {
+        setPrefersReducedMotion(e.matches)
+      }
+      
+      mediaQuery.addEventListener('change', handleChange)
+      return () => mediaQuery.removeEventListener('change', handleChange)
+    } catch (error) {
+      console.warn('Error setting up motion preferences:', error)
+      setPrefersReducedMotion(true) // Default to reduced motion on error
     }
-    
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
-  return (
+  // Static fallback for when JavaScript is disabled
+  const StaticTimeline = () => (
     <div className="relative max-w-4xl mx-auto">
-      {/* Timeline Line */}
-      <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-200 hidden md:block" />
-      
       <div className="space-y-12">
-        {processSteps.map((step, index) => (
-          <ProcessStep 
-            key={step.step} 
-            step={step} 
-            index={index}
-            prefersReducedMotion={prefersReducedMotion}
-          />
+        {processSteps.map((step) => (
+          <div key={step.step} className="relative flex items-start gap-6 md:gap-8">
+            <div className="flex-shrink-0 relative">
+              <div className={`w-16 h-16 rounded-full ${colorMap[step.color as keyof typeof colorMap]} flex items-center justify-center text-white shadow-lg`}>
+                <step.icon size={24} />
+              </div>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                {step.step}
+              </div>
+            </div>
+            <div className="flex-1 pb-8">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm">
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-xl font-semibold text-slate-900">
+                    {step.title}
+                  </h3>
+                  <div className="flex items-center gap-1 text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                    <Clock size={14} />
+                    {step.duration}
+                  </div>
+                </div>
+                <p className="text-slate-600 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
+  )
+
+  // If not client-side yet, show static content
+  if (!isClient) {
+    return <StaticTimeline />
+  }
+
+  return (
+    <NoScript fallback={<StaticTimeline />}>
+      <div className="relative max-w-4xl mx-auto">
+        {/* Timeline Line */}
+        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-200 hidden md:block" />
+        
+        <div className="space-y-12">
+          {processSteps.map((step, index) => (
+            <ProcessStep 
+              key={step.step} 
+              step={step} 
+              index={index}
+              prefersReducedMotion={prefersReducedMotion}
+            />
+          ))}
+        </div>
+      </div>
+    </NoScript>
+  )
+}
+
+export function ProcessTimeline() {
+  return (
+    <ErrorBoundary
+      fallback={
+        <div className="relative max-w-4xl mx-auto">
+          <div className="text-center py-8">
+            <h3 className="text-xl font-semibold text-slate-900 mb-4">
+              Our Development Process
+            </h3>
+            <p className="text-slate-600 mb-8">
+              Process timeline is temporarily unavailable. Please contact us to learn more about our development methodology.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              {processSteps.map((step) => (
+                <div key={step.step} className="text-center">
+                  <div className="w-12 h-12 mx-auto mb-2 bg-blue-100 rounded-full flex items-center justify-center">
+                    <step.icon size={20} className="text-blue-600" />
+                  </div>
+                  <h4 className="font-medium text-sm">{step.title}</h4>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <ProcessTimelineContent />
+    </ErrorBoundary>
   )
 }
 

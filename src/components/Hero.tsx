@@ -181,7 +181,7 @@ export function Hero() {
                 Crafting Digital Experiences That Drive Results
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                We're a modern web agency specializing in cutting-edge development, 
+                We&apos;re a modern web agency specializing in cutting-edge development, 
                 stunning design, and strategic digital solutions that transform your business.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">

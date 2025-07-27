@@ -65,7 +65,8 @@
 
   - _Requirements: 1.1, 1.2, 6.1, 6.2, 6.5_
 
-- [-] 5. Create projects showcase page and components
+- [x] 5. Create projects showcase page and components
+
 
 
 
@@ -89,6 +90,9 @@
   - Include technology tags, live demo links, and image galleries
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 -
+
+
+
 
 
 - [ ] 6. Implement services page with process visualization

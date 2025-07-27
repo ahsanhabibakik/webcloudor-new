@@ -4,6 +4,7 @@ import { Service } from '@/types'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { 
   Code, 
   ShoppingCart, 
@@ -28,7 +29,7 @@ const iconMap = {
   users: Users,
 }
 
-export function ServiceCard({ service }: ServiceCardProps) {
+function ServiceCardContent({ service }: ServiceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const IconComponent = iconMap[service.icon as keyof typeof iconMap] || Code
 
@@ -94,22 +95,71 @@ export function ServiceCard({ service }: ServiceCardProps) {
       </CardContent>
 
       <CardFooter className="pt-0">
-        <Button 
-          asChild 
-          variant="outline" 
-          className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300"
-        >
-          <Link href="/contact" className="flex items-center justify-center gap-2">
-            Get Quote
-            <ArrowRight 
-              size={16} 
-              className={`transition-transform duration-300 ${
-                isHovered ? 'translate-x-1' : ''
-              }`} 
-            />
-          </Link>
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            asChild 
+            variant="outline" 
+            className="flex-1 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300"
+            size="sm"
+          >
+            <Link 
+              href={`/services/${service.id}`}
+              className="flex items-center justify-center gap-2"
+              aria-label={`Learn more about ${service.title} service`}
+            >
+              Learn More
+            </Link>
+          </Button>
+          <Button 
+            asChild 
+            size="sm"
+            className="flex-1"
+          >
+            <Link 
+              href="/contact" 
+              className="flex items-center justify-center gap-2"
+              aria-label={`Get quote for ${service.title} service`}
+            >
+              Get Quote
+              <ArrowRight 
+                size={16} 
+                className={`transition-transform duration-300 ${
+                  isHovered ? 'translate-x-1' : ''
+                }`} 
+              />
+            </Link>
+          </Button>
+        </div>
       </CardFooter>
     </Card>
+  )
+}
+
+export function ServiceCard({ service }: ServiceCardProps) {
+  return (
+    <ErrorBoundary
+      fallback={
+        <Card className="h-full">
+          <CardHeader>
+            <CardTitle className="text-xl">Service Unavailable</CardTitle>
+            <CardDescription>
+              This service information is temporarily unavailable.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">
+              Please try refreshing the page or contact us for more information.
+            </p>
+          </CardContent>
+          <CardFooter>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+      }
+    >
+      <ServiceCardContent service={service} />
+    </ErrorBoundary>
   )
 }

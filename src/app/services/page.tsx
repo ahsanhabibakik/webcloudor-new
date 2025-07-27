@@ -4,6 +4,7 @@ import { ServiceCard } from '@/components/services/ServiceCard'
 import { ProcessTimeline } from '@/components/services/ProcessTimeline'
 import { ScrollReveal } from '@/components/animations/ScrollReveal'
 import { FadeIn } from '@/components/animations/FadeIn'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -51,13 +52,29 @@ export default function ServicesPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mockServices.map((service, index) => (
-              <ScrollReveal key={service.id} delay={index * 0.1}>
-                <ServiceCard service={service} />
-              </ScrollReveal>
-            ))}
-          </div>
+          <ErrorBoundary
+            fallback={
+              <div className="text-center py-16">
+                <h3 className="text-2xl font-semibold text-slate-900 mb-4">
+                  Services Temporarily Unavailable
+                </h3>
+                <p className="text-slate-600 mb-8">
+                  Our services information is currently unavailable. Please contact us directly for details about our offerings.
+                </p>
+                <Button asChild>
+                  <Link href="/contact">Contact Us</Link>
+                </Button>
+              </div>
+            }
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {mockServices.map((service, index) => (
+                <ScrollReveal key={service.id} delay={index * 0.1}>
+                  <ServiceCard service={service} />
+                </ScrollReveal>
+              ))}
+            </div>
+          </ErrorBoundary>
         </div>
       </section>
 
@@ -76,9 +93,25 @@ export default function ServicesPage() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            <ProcessTimeline />
-          </ScrollReveal>
+          <ErrorBoundary
+            fallback={
+              <div className="text-center py-16">
+                <h3 className="text-2xl font-semibold text-slate-900 mb-4">
+                  Process Information Unavailable
+                </h3>
+                <p className="text-slate-600 mb-8">
+                  Our process timeline is temporarily unavailable. Contact us to learn more about our development methodology.
+                </p>
+                <Button asChild variant="outline">
+                  <Link href="/contact">Learn More</Link>
+                </Button>
+              </div>
+            }
+          >
+            <ScrollReveal delay={0.2}>
+              <ProcessTimeline />
+            </ScrollReveal>
+          </ErrorBoundary>
         </div>
       </section>
 
