@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { mockTeamMembers, siteConfig } from '@/lib/data'
+import { mockTeamMembers } from '@/lib/data'
 import { TeamGrid } from '@/components/team/TeamGrid'
 import { AgencyStory } from '@/components/about/AgencyStory'
 import { AgencyValues } from '@/components/about/AgencyValues'
