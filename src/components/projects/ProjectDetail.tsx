@@ -146,7 +146,7 @@ function ProjectDetailContent({ project }: ProjectDetailProps) {
               {/* Main Image */}
               <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gray-100">
                 <SafeImage
-                  src={project.gallery[currentImageIndex]}
+                  src={project.gallery[currentImageIndex] || ''}
                   alt={`${project.title} - Screenshot ${currentImageIndex + 1} of ${project.gallery.length}`}
                   fill
                   className="object-cover transition-opacity duration-300"
