@@ -65,7 +65,8 @@
 
   - _Requirements: 1.1, 1.2, 6.1, 6.2, 6.5_
 
-- [ ] 5. Create projects showcase page and components
+- [-] 5. Create projects showcase page and components
+
 
 
 

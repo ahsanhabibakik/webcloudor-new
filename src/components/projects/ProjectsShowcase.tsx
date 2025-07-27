@@ -3,12 +3,15 @@
 import { useState, useMemo } from 'react'
 import { ProjectCard } from './ProjectCard'
 import { ProjectFilter } from './ProjectFilter'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { LoadingState } from '@/components/LoadingState'
 import { mockProjects } from '@/lib/data/projects'
 import type { Project, ProjectCategory } from '@/types'
 
-export function ProjectsShowcase() {
+function ProjectsShowcaseContent() {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'all'>('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const filteredProjects = useMemo(() => {
     let filtered = mockProjects
@@ -45,28 +48,90 @@ export function ProjectsShowcase() {
       </div>
 
       {/* Filter Controls */}
-      <ProjectFilter
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-      />
+      <ErrorBoundary
+        fallback={
+          <div className="mb-12 text-center">
+            <p className="text-gray-500">Filter controls unavailable</p>
+          </div>
+        }
+      >
+        <ProjectFilter
+          selectedCategory={selectedCategory}
+          onCategoryChange={(category) => {
+            setIsLoading(true)
+            setSelectedCategory(category)
+            // Simulate brief loading for better UX
+            setTimeout(() => setIsLoading(false), 100)
+          }}
+          searchQuery={searchQuery}
+          onSearchChange={(query) => {
+            setIsLoading(true)
+            setSearchQuery(query)
+            // Simulate brief loading for better UX
+            setTimeout(() => setIsLoading(false), 300)
+          }}
+        />
+      </ErrorBoundary>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-
-      {/* No Results */}
-      {filteredProjects.length === 0 && (
-        <div className="text-center py-16">
-          <p className="text-gray-500 text-lg">
-            No projects found matching your criteria.
-          </p>
+      {/* Loading State */}
+      {isLoading && (
+        <div className="py-8">
+          <LoadingState message="Filtering projects..." />
         </div>
       )}
+
+      {/* Projects Grid */}
+      {!isLoading && (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+
+          {/* No Results */}
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-gray-500 text-lg">
+                No projects found matching your criteria.
+              </p>
+              <button
+                onClick={() => {
+                  setSelectedCategory('all')
+                  setSearchQuery('')
+                }}
+                className="mt-4 text-blue-600 hover:text-blue-800 underline"
+              >
+                Clear filters
+              </button>
+            </div>
+          )}
+        </>
+      )}
     </div>
+  )
+}
+
+export function ProjectsShowcase() {
+  return (
+    <ErrorBoundary
+      fallback={
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our Projects
+            </h1>
+            <p className="text-xl text-gray-600 mb-8">
+              Sorry, our projects showcase is temporarily unavailable.
+            </p>
+            <p className="text-gray-500">
+              Please try refreshing the page or contact us if the problem persists.
+            </p>
+          </div>
+        </div>
+      }
+    >
+      <ProjectsShowcaseContent />
+    </ErrorBoundary>
   )
 }

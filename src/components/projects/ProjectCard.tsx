@@ -1,20 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ExternalLink, Github, Calendar } from 'lucide-react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { SafeImage } from '@/components/SafeImage'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import type { Project } from '@/types'
 
 interface ProjectCardProps {
   project: Project
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
-  const [imageLoaded, setImageLoaded] = useState(false)
+function ProjectCardContent({ project }: ProjectCardProps) {
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('en-US', { 
@@ -57,18 +57,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       {/* Image Container */}
       <div className="relative aspect-video overflow-hidden bg-gray-100">
-        <Image
+        <SafeImage
           src={project.image}
-          alt={project.title}
+          alt={`${project.title} project screenshot`}
           fill
-          className={`object-cover transition-all duration-500 group-hover:scale-105 ${
-            imageLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={() => setImageLoaded(true)}
+          className="object-cover transition-all duration-500 group-hover:scale-105"
+          fallbackClassName="aspect-video"
         />
-        {!imageLoaded && (
-          <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-        )}
         
         {/* Overlay with links */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
@@ -79,7 +74,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </Link>
           {project.liveUrl && (
             <Button size="sm" variant="secondary" className="bg-white/90 hover:bg-white" asChild>
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+              <a 
+                href={project.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                title={`View live demo of ${project.title}`}
+              >
                 <ExternalLink className="w-4 h-4 mr-1" />
                 Live Demo
               </a>
@@ -155,15 +155,27 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <div className="flex items-center gap-2">
             {project.githubUrl && (
               <Button size="sm" variant="ghost" className="p-2" asChild>
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <a 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title={`View source code for ${project.title}`}
+                >
                   <Github className="w-4 h-4" />
+                  <span className="sr-only">View source code</span>
                 </a>
               </Button>
             )}
             {project.liveUrl && (
               <Button size="sm" variant="ghost" className="p-2" asChild>
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <a 
+                  href={project.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title={`View live demo of ${project.title}`}
+                >
                   <ExternalLink className="w-4 h-4" />
+                  <span className="sr-only">View live demo</span>
                 </a>
               </Button>
             )}
@@ -171,5 +183,29 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </CardFooter>
     </Card>
+  )
+}
+
+export function ProjectCard({ project }: ProjectCardProps) {
+  return (
+    <ErrorBoundary
+      fallback={
+        <Card className="overflow-hidden">
+          <div className="aspect-video bg-muted flex items-center justify-center">
+            <p className="text-muted-foreground">Project unavailable</p>
+          </div>
+          <CardContent className="p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              {project.title}
+            </h3>
+            <p className="text-gray-600 text-sm">
+              {project.description}
+            </p>
+          </CardContent>
+        </Card>
+      }
+    >
+      <ProjectCardContent project={project} />
+    </ErrorBoundary>
   )
 }

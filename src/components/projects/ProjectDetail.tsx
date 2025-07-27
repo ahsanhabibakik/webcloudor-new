@@ -1,21 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, Github, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
+import { SafeImage } from '@/components/SafeImage'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import type { Project } from '@/types'
 
 interface ProjectDetailProps {
   project: Project
 }
 
-export function ProjectDetail({ project }: ProjectDetailProps) {
+function ProjectDetailContent({ project }: ProjectDetailProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [imageLoaded, setImageLoaded] = useState(false)
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('en-US', { 
@@ -59,14 +59,12 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
     setCurrentImageIndex((prev) => 
       prev === project.gallery.length - 1 ? 0 : prev + 1
     )
-    setImageLoaded(false)
   }
 
   const prevImage = () => {
     setCurrentImageIndex((prev) => 
       prev === 0 ? project.gallery.length - 1 : prev - 1
     )
-    setImageLoaded(false)
   }
 
   const groupedTechnologies = project.technologies.reduce((acc, tech) => {
@@ -147,31 +145,32 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
               
               {/* Main Image */}
               <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gray-100">
-                <Image
+                <SafeImage
                   src={project.gallery[currentImageIndex]}
-                  alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                  alt={`${project.title} - Screenshot ${currentImageIndex + 1} of ${project.gallery.length}`}
                   fill
-                  className={`object-cover transition-opacity duration-300 ${
-                    imageLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  onLoad={() => setImageLoaded(true)}
+                  className="object-cover transition-opacity duration-300"
+                  fallbackClassName="aspect-video rounded-lg"
                 />
-                {!imageLoaded && (
-                  <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-                )}
                 
                 {/* Navigation Arrows */}
                 {project.gallery.length > 1 && (
                   <>
                     <button
+                      type="button"
                       onClick={prevImage}
                       className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                      title="Previous image"
+                      aria-label="Previous image"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
+                      type="button"
                       onClick={nextImage}
                       className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                      title="Next image"
+                      aria-label="Next image"
                     >
                       <ChevronRight className="w-5 h-5" />
                     </button>
@@ -190,21 +189,23 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                   {project.gallery.map((image, index) => (
                     <button
                       key={index}
-                      onClick={() => {
-                        setCurrentImageIndex(index)
-                        setImageLoaded(false)
-                      }}
+                      type="button"
+                      onClick={() => setCurrentImageIndex(index)}
                       className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
                         index === currentImageIndex
                           ? 'border-blue-500'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
+                      title={`View image ${index + 1}`}
+                      aria-label={`View image ${index + 1} of ${project.gallery.length}`}
                     >
-                      <Image
+                      <SafeImage
                         src={image}
                         alt={`${project.title} thumbnail ${index + 1}`}
                         fill
                         className="object-cover"
+                        fallbackClassName="w-20 h-20 rounded-lg"
+                        showFallbackIcon={false}
                       />
                     </button>
                   ))}
@@ -291,5 +292,39 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
         </div>
       </div>
     </div>
+  )
+}
+
+export function ProjectDetail({ project }: ProjectDetailProps) {
+  return (
+    <ErrorBoundary
+      fallback={
+        <div className="min-h-screen bg-white">
+          <div className="container mx-auto px-4 py-8">
+            <div className="mb-8">
+              <Link href="/projects">
+                <Button variant="outline" size="sm">
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Projects
+                </Button>
+              </Link>
+            </div>
+            <div className="text-center py-16">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                Project Unavailable
+              </h1>
+              <p className="text-gray-600 mb-8">
+                Sorry, this project couldn't be loaded. Please try again later.
+              </p>
+              <Link href="/projects">
+                <Button>View All Projects</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <ProjectDetailContent project={project} />
+    </ErrorBoundary>
   )
 }
