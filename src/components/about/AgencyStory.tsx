@@ -92,7 +92,7 @@ export function AgencyStory() {
             {/* Stats Grid */}
             <motion.div variants={itemVariants}>
               <div className="grid grid-cols-2 gap-6">
-                {storyStats.map((stat, index) => (
+                {storyStats.map((stat) => (
                   <motion.div
                     key={stat.label}
                     variants={itemVariants}
