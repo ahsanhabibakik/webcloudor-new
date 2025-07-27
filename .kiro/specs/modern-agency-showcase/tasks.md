@@ -185,7 +185,8 @@ g Framer Motion
   - Test on various devices and browsers
   - _Requirements: 5.1_
 
-- [-] 13. Add error handling and fallback states
+- [x] 13. Add error handling and fallback states
+
 
 
 
