@@ -135,12 +135,17 @@ export default function Navbar({ className }: NavbarProps) {
                 <SheetHeader>
                   <SheetTitle id="mobile-menu-title" className="text-left">Navigation</SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col space-y-4 mt-6">
-                  {navItems.map((item) => (
+                <nav 
+                  className="flex flex-col space-y-4 mt-6"
+                  role="navigation"
+                  aria-label="Mobile navigation menu"
+                >
+                  {navItems.map((item, index) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={handleLinkClick}
+                      onKeyDown={(e) => handleMenuItemKeyDown(e, item.href)}
                       aria-current={pathname === item.href ? 'page' : undefined}
                       className={cn(
                         "text-sm font-medium transition-colors hover:text-primary px-2 py-3 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
@@ -148,8 +153,12 @@ export default function Navbar({ className }: NavbarProps) {
                           ? "text-primary bg-accent"
                           : "text-muted-foreground"
                       )}
+                      tabIndex={0}
                     >
                       {item.title}
+                      {pathname === item.href && (
+                        <span className="sr-only"> (current page)</span>
+                      )}
                     </Link>
                   ))}
                 </nav>
