@@ -86,7 +86,7 @@ export function AgencyStory() {
                 <p>
                   Every project we undertake is an opportunity to push boundaries, 
                   explore new technologies, and create something truly remarkable. 
-                  We don't just build websites and applications – we craft digital 
+                  We dondondondondondondon'tapos;tapos;tapos;tapos;tapos;tapos;t just build websites and applications – we craft digital 
                   experiences that drive real business results.
                 </p>
               </div>

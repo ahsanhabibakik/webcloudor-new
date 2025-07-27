@@ -22,7 +22,7 @@ export default function AboutPage() {
               <span className="text-blue-600 block">Exceptional Digital Experiences</span>
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed">
-              We're a passionate team of designers, developers, and strategists 
+              WeWeWeWeWeWeWe'reapos;reapos;reapos;reapos;reapos;reapos;re a passionate team of designers, developers, and strategists 
               dedicated to creating digital solutions that make a real impact.
             </p>
           </div>

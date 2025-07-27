@@ -13,7 +13,7 @@ export default function NotFound() {
           </div>
           <CardTitle className="text-xl">Page Not Found</CardTitle>
           <CardDescription>
-            The page you're looking for doesn't exist or has been moved.
+            The page youyouyouyouyouyouyou'reapos;reapos;reapos;reapos;reapos;reapos;re looking for doesn't exist or has been moved.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
