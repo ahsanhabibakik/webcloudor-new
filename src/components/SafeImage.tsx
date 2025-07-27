@@ -23,7 +23,12 @@ export function SafeImage({
   ...props
 }: SafeImageProps) {
   const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [currentSrc, setCurrentSrc] = useState(src)
+
+  const handleLoad = () => {
+    setLoading(false)
+  }
 
   const handleError = (error: any) => {
     console.warn('Image failed to load:', currentSrc, error)
@@ -31,11 +36,13 @@ export function SafeImage({
     // Try fallback image first
     if (fallbackSrc && currentSrc !== fallbackSrc) {
       setCurrentSrc(fallbackSrc)
+      setLoading(true) // Reset loading state for fallback
       return
     }
     
     // If fallback also fails or no fallback provided, show error state
     setError(true)
+    setLoading(false)
     
     // Call custom error handler if provided
     if (onError) {
@@ -70,13 +77,25 @@ export function SafeImage({
   }
 
   return (
-    <Image
-      {...props}
-      src={currentSrc}
-      alt={alt}
-      className={className}
-      onError={handleError}
-    />
+    <div className="relative">
+      {loading && (
+        <div className="absolute inset-0 z-10">
+          <ImagePlaceholder className="w-full h-full" />
+        </div>
+      )}
+      <Image
+        {...props}
+        src={currentSrc}
+        alt={alt}
+        className={cn(
+          className,
+          loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'
+        )}
+        onLoad={handleLoad}
+        onError={handleError}
+        loading={props.loading || 'lazy'}
+      />
+    </div>
   )
 }
 

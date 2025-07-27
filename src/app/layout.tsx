@@ -4,6 +4,8 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { PerformanceMonitor } from '@/components/PerformanceMonitor'
+import { SkipLink } from '@/components/SkipLink'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -49,11 +51,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        <SkipLink />
+        <PerformanceMonitor />
         <div className="min-h-screen flex flex-col">
           <ErrorBoundary>
             <Navbar />
           </ErrorBoundary>
-          <main className="flex-1">
+          <main id="main-content" className="flex-1">
             <ErrorBoundary>
               {children}
             </ErrorBoundary>
