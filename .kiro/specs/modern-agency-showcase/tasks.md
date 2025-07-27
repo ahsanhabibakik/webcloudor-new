@@ -175,6 +175,11 @@ ts, and company culture
   - _Requirements: 5.2, 5.3_
 
 
+
+
+
+
+
 - [ ] 10. Add accessibility features and keyboard navigation
 
 

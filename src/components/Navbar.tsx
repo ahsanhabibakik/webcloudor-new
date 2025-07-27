@@ -75,12 +75,11 @@ export default function Navbar({ className }: NavbarProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8" role="menubar">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                role="menuitem"
                 aria-current={pathname === item.href ? 'page' : undefined}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary relative py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm",
@@ -125,13 +124,12 @@ export default function Navbar({ className }: NavbarProps) {
                 <SheetHeader>
                   <SheetTitle id="mobile-menu-title" className="text-left">Navigation</SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col space-y-4 mt-6" role="menu">
+                <nav className="flex flex-col space-y-4 mt-6">
                   {navItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={handleLinkClick}
-                      role="menuitem"
                       aria-current={pathname === item.href ? 'page' : undefined}
                       className={cn(
                         "text-sm font-medium transition-colors hover:text-primary px-2 py-3 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",

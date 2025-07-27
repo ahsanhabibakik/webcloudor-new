@@ -6,6 +6,8 @@ import Footer from '@/components/Footer'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { PerformanceMonitor } from '@/components/PerformanceMonitor'
 import { SkipLink } from '@/components/SkipLink'
+import { AccessibilityProvider } from '@/components/AccessibilityProvider'
+import { AccessibilityTest } from '@/components/AccessibilityTest'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -51,21 +53,28 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <SkipLink />
-        <PerformanceMonitor />
-        <div className="min-h-screen flex flex-col">
-          <ErrorBoundary>
-            <Navbar />
-          </ErrorBoundary>
-          <main id="main-content" className="flex-1">
+        <AccessibilityProvider>
+          <SkipLink />
+          <PerformanceMonitor />
+          <div className="min-h-screen flex flex-col">
             <ErrorBoundary>
-              {children}
+              <header role="banner">
+                <Navbar />
+              </header>
             </ErrorBoundary>
-          </main>
-          <ErrorBoundary>
-            <Footer />
-          </ErrorBoundary>
-        </div>
+            <main id="main-content" role="main" className="flex-1" tabIndex={-1}>
+              <ErrorBoundary>
+                {children}
+              </ErrorBoundary>
+            </main>
+            <ErrorBoundary>
+              <footer role="contentinfo">
+                <Footer />
+              </footer>
+            </ErrorBoundary>
+          </div>
+          {process.env.NODE_ENV === 'development' && <AccessibilityTest />}
+        </AccessibilityProvider>
       </body>
     </html>
   )
