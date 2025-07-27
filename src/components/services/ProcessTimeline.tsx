@@ -86,6 +86,7 @@ function ProcessTimelineContent() {
     } catch (error) {
       console.warn('Error setting up motion preferences:', error)
       setPrefersReducedMotion(true) // Default to reduced motion on error
+      return undefined
     }
   }, [])
 
