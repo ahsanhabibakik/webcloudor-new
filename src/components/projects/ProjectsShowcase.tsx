@@ -96,11 +96,12 @@ function ProjectsShowcaseContent() {
                 No projects found matching your criteria.
               </p>
               <button
+                type="button"
                 onClick={() => {
                   setSelectedCategory('all')
                   setSearchQuery('')
                 }}
-                className="mt-4 text-blue-600 hover:text-blue-800 underline"
+                className="mt-4 text-blue-600 hover:text-blue-800 underline bg-transparent border-none cursor-pointer"
               >
                 Clear filters
               </button>

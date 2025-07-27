@@ -180,14 +180,12 @@ function ProjectCardContent({ project }: ProjectCardProps) {
 
       <CardFooter className="px-6 py-4 bg-gray-50 border-t">
         <div className="flex items-center justify-between w-full">
-          <Link href={`/projects/${project.id}`}>
-            <Button 
-              variant="outline" 
-              size="sm"
-              aria-label={`Learn more about ${project.title} project`}
-            >
-              Learn More
-            </Button>
+          <Link 
+            href={`/projects/${project.id}`}
+            aria-label={`Learn more about ${project.title} project`}
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3"
+          >
+            Learn More
           </Link>
           
           <div 
