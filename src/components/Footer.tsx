@@ -181,13 +181,13 @@ export default function Footer({ className, minimal = false }: FooterProps) {
             </p>
             <div className="flex items-center space-x-6">
               <Link
-                href={"/privacy"}
+                href={"/privacy" as any}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
-                href={"/terms"}
+                href={"/terms" as any}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 Terms of Service

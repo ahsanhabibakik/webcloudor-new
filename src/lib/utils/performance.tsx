@@ -11,11 +11,15 @@ export function createLazyComponent<T extends React.ComponentType<any>>(
 ) {
   const LazyComponent = React.lazy(importFn)
   
-  return (props: React.ComponentProps<T>) => (
+  const LazyWrapper = (props: React.ComponentProps<T>) => (
     <React.Suspense fallback={fallback ? React.createElement(fallback) : null}>
       <LazyComponent {...props} />
     </React.Suspense>
   )
+  
+  LazyWrapper.displayName = `LazyComponent(${LazyComponent.displayName || LazyComponent.name || 'Component'})`
+  
+  return LazyWrapper
 }
 
 // Image preloader utility

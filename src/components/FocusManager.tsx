@@ -126,6 +126,8 @@ export function AccessibleFocusManager({
         container.removeEventListener('keydown', handleEscapeKey)
       }
     }
+    
+    return undefined
   }, [trapFocus, restoreFocus])
 
   return (

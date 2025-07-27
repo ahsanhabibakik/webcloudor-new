@@ -64,8 +64,11 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         setErrors(prev => ({ ...prev, [name]: '' }))
       }
     } catch (error: unknown) {
-      if (error instanceof ZodError && error.errors[0]?.message) {
-        setErrors(prev => ({ ...prev, [name]: error.errors[0].message }))
+      if (error instanceof ZodError && error.errors.length > 0) {
+        const firstError = error.errors[0]
+        if (firstError) {
+          setErrors(prev => ({ ...prev, [name]: firstError.message }))
+        }
       }
     }
   }

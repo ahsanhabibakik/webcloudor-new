@@ -139,7 +139,7 @@ export function ExpertiseHighlights() {
                 >
                   Start a Project
                 </a>
-                <Link href="/projects/" className="text-blue-600 hover:underline">See all projects</Link>
+                <Link href="/projects" className="text-blue-600 hover:underline">See all projects</Link>
               </div>
             </div>
           </motion.div>

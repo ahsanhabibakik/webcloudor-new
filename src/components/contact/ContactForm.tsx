@@ -168,7 +168,7 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
           <div className="grid md:grid-cols-2 gap-4">
             <motion.div variants={fieldVariants} className="space-y-2">
               <Label>Project Type *</Label>
-              <Select onValueChange={(value) => setValue('projectType', value as any)}>
+              <Select onValueChange={(value) => setValue('projectType', value as ContactFormValues['projectType'])}>
                 <SelectTrigger className={errors.projectType ? 'border-red-500' : ''}>
                   <SelectValue placeholder="Select project type" />
                 </SelectTrigger>
@@ -186,7 +186,7 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
 
             <motion.div variants={fieldVariants} className="space-y-2">
               <Label>Budget Range *</Label>
-              <Select onValueChange={(value) => setValue('budget', value as any)}>
+              <Select onValueChange={(value) => setValue('budget', value as ContactFormValues['budget'])}>
                 <SelectTrigger className={errors.budget ? 'border-red-500' : ''}>
                   <SelectValue placeholder="Select budget range" />
                 </SelectTrigger>

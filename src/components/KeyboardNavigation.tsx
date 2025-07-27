@@ -67,6 +67,8 @@ export function KeyboardNavigation({
       container.addEventListener('keydown', handleTabKey)
       return () => container.removeEventListener('keydown', handleTabKey)
     }
+    
+    return undefined
   }, [trapFocus])
 
   return (
@@ -126,12 +128,15 @@ export function ButtonGroup({
       e.preventDefault()
       
       // Update tabindex
-      if (buttons[currentIndex]) {
-        buttons[currentIndex].tabIndex = -1
+      const currentButton = buttons[currentIndex] as HTMLElement | undefined
+      const newButton = buttons[newIndex] as HTMLElement | undefined
+      
+      if (currentButton) {
+        currentButton.tabIndex = -1
       }
-      if (buttons[newIndex]) {
-        buttons[newIndex].tabIndex = 0
-        buttons[newIndex].focus()
+      if (newButton) {
+        newButton.tabIndex = 0
+        newButton.focus()
       }
       
       currentIndex = newIndex
