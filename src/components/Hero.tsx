@@ -127,7 +127,7 @@ function HeroContent() {
                 className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
                 aria-describedby="hero-title"
               >
-                We&reapos;re a modern web agency specializing in cutting-edge development, 
+                We&apos;re a modern web agency specializing in cutting-edge development, 
                 stunning design, and strategic digital solutions that transform your business.
               </p>
             </FadeIn>

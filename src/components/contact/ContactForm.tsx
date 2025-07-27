@@ -109,7 +109,7 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
       <CardHeader>
         <CardTitle>Send us a message</CardTitle>
         <CardDescription>
-          Fill out the form below and wewewewewewewewe'llapos;llapos;llapos;llapos;llapos;llapos;llapos;ll get back to you within 24 hours
+          Tell us about your project and we&apos;ll get back to you within 24 hours.
         </CardDescription>
       </CardHeader>
       <CardContent>

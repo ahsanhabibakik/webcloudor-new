@@ -185,8 +185,9 @@ function ServiceDetailContent({ service }: ServiceDetailProps) {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Ready to Get Started?
                   </h3>
-                  <p className="text-gray-600 mb-4 text-sm">
-                    LetLetLetLetLetLetLetLet'sapos;sapos;sapos;sapos;sapos;sapos;sapos;s discuss your project and how we can help bring your vision to life.
+                  <p className="text-lg text-slate-600 mb-6">
+                    Let&apos;s discuss your project and how we can help bring your vision to life.
+                    We&apos;d love to hear about your project and explore how we can collaborate.
                   </p>
                   <Button asChild className="w-full">
                     <Link href="/contact">

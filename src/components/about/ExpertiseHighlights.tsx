@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Code2, Palette, Smartphone, Cloud, Database, Shield } from 'lucide-react'
+import Link from 'next/link'
 
 const expertiseAreas = [
   {
@@ -128,8 +129,8 @@ export function ExpertiseHighlights() {
                 Ready to Work Together?
               </h3>
               <p className="text-slate-600 mb-6">
-                LetLetLetLetLetLetLetLet'sapos;sapos;sapos;sapos;sapos;sapos;sapos;s discuss how our expertise can help bring your vision to life. 
-                We'd love to hear about your project and explore how we can collaborate.
+                Let&apos;s discuss how our expertise can help bring your vision to life.
+                We&apos;d love to hear about your project and explore how we can collaborate.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -138,12 +139,7 @@ export function ExpertiseHighlights() {
                 >
                   Start a Project
                 </a>
-                <a
-                  href="/projects"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors"
-                >
-                  View Our Work
-                </a>
+                <Link href="/projects/" className="text-blue-600 hover:underline">See all projects</Link>
               </div>
             </div>
           </motion.div>

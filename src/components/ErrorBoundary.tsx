@@ -53,9 +53,9 @@ export class ErrorBoundary extends Component<Props, State> {
             <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
               <AlertTriangle className="h-5 w-5 text-red-600" />
             </div>
-            <CardTitle className="text-lg">Component Error</CardTitle>
+            <CardTitle className="text-xl">Something went wrong</CardTitle>
             <CardDescription>
-              This component encountered an error and couldn't render properly.
+              We encountered an unexpected error. This has been logged and we&apos;re working to fix it.
             </CardDescription>
           </CardHeader>
           <CardContent>

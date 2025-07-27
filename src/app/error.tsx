@@ -26,7 +26,7 @@ export default function Error({ error, reset }: ErrorProps) {
           </div>
           <CardTitle className="text-xl">Something went wrong</CardTitle>
           <CardDescription>
-            We encountered an unexpected error. This has been logged and wewewewewewewewe'reapos;reapos;reapos;reapos;reapos;reapos;reapos;re working to fix it.
+            We encountered an unexpected error. This has been logged and we&apos;re working to fix it.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

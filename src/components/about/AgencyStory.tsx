@@ -83,11 +83,8 @@ export function AgencyStory() {
                   Our approach is collaborative, transparent, and focused on 
                   understanding your unique challenges and goals.
                 </p>
-                <p>
-                  Every project we undertake is an opportunity to push boundaries, 
-                  explore new technologies, and create something truly remarkable. 
-                  We dondondondondondondondon'tapos;tapos;tapos;tapos;tapos;tapos;tapos;t just build websites and applications – we craft digital 
-                  experiences that drive real business results.
+                <p className="text-lg text-slate-600 mb-6">
+                  We don&apos;t just build websites and applications – we craft digital experiences that drive results.
                 </p>
               </div>
             </motion.div>
