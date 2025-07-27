@@ -11,6 +11,7 @@ import { AccessibilityTest } from '@/components/AccessibilityTest'
 import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider'
 import { AccessibilityAnnouncerProvider, RouteAnnouncer } from '@/components/AccessibilityAnnouncer'
 import { GlobalKeyboardShortcuts } from '@/components/GlobalKeyboardShortcuts'
+import { MobileOptimizations } from '@/components/MobileOptimizations'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -62,6 +63,7 @@ export default function RootLayout({
               <SkipLink />
               <RouteAnnouncer />
               <GlobalKeyboardShortcuts />
+              <MobileOptimizations />
               <PerformanceMonitor />
               <div className="min-h-screen flex flex-col">
                 <ErrorBoundary>
