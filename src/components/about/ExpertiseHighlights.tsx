@@ -1,0 +1,154 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { Code2, Palette, Smartphone, Cloud, Database, Shield } from 'lucide-react'
+
+const expertiseAreas = [
+  {
+    icon: Code2,
+    title: 'Frontend Development',
+    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    description: 'Modern, responsive interfaces that provide exceptional user experiences across all devices.'
+  },
+  {
+    icon: Database,
+    title: 'Backend Development',
+    technologies: ['Node.js', 'Python', 'PostgreSQL', 'GraphQL'],
+    description: 'Scalable server-side solutions with robust APIs and efficient data management.'
+  },
+  {
+    icon: Palette,
+    title: 'UI/UX Design',
+    technologies: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research'],
+    description: 'User-centered design that combines beautiful aesthetics with intuitive functionality.'
+  },
+  {
+    icon: Smartphone,
+    title: 'Mobile Development',
+    technologies: ['React Native', 'Flutter', 'iOS', 'Android'],
+    description: 'Cross-platform mobile applications that deliver native performance and user experience.'
+  },
+  {
+    icon: Cloud,
+    title: 'Cloud & DevOps',
+    technologies: ['AWS', 'Docker', 'CI/CD', 'Kubernetes'],
+    description: 'Scalable cloud infrastructure and automated deployment pipelines for reliable applications.'
+  },
+  {
+    icon: Shield,
+    title: 'Security & Performance',
+    technologies: ['Security Audits', 'Performance Optimization', 'Monitoring', 'Testing'],
+    description: 'Comprehensive security measures and performance optimization for enterprise-grade applications.'
+  }
+]
+
+export function ExpertiseHighlights() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="container mx-auto px-4">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="max-w-6xl mx-auto"
+        >
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              Our Expertise
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              We combine deep technical knowledge with creative problem-solving 
+              to deliver comprehensive digital solutions.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {expertiseAreas.map((area, index) => (
+              <motion.div
+                key={area.title}
+                variants={itemVariants}
+                className="group"
+              >
+                <div className="bg-white p-8 rounded-2xl h-full shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mb-6 shadow-lg">
+                    <area.icon className="w-7 h-7 text-white" />
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">
+                    {area.title}
+                  </h3>
+                  
+                  <p className="text-slate-600 leading-relaxed mb-4">
+                    {area.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {area.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full font-medium border border-blue-100"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <motion.div variants={itemVariants} className="text-center mt-16">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                Ready to Work Together?
+              </h3>
+              <p className="text-slate-600 mb-6">
+                Let's discuss how our expertise can help bring your vision to life. 
+                We'd love to hear about your project and explore how we can collaborate.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Start a Project
+                </a>
+                <a
+                  href="/projects"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors"
+                >
+                  View Our Work
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
