@@ -90,7 +90,7 @@ export default function Navbar({ className }: NavbarProps) {
             {navItems.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={item.href as `/` | `/about` | `/services` | `/projects` | `/contact`}
                 aria-current={pathname === item.href ? 'page' : undefined}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary relative py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm",
@@ -143,7 +143,7 @@ export default function Navbar({ className }: NavbarProps) {
                   {navItems.map((item) => (
                     <Link
                       key={item.href}
-                      href={item.href}
+                      href={item.href as `/` | `/about` | `/services` | `/projects` | `/contact`}
                       onClick={handleLinkClick}
                       onKeyDown={(e) => handleMenuItemKeyDown(e, item.href)}
                       aria-current={pathname === item.href ? 'page' : undefined}
