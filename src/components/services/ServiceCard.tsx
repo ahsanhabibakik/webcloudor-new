@@ -98,9 +98,9 @@ function ServiceCardContent({ service }: ServiceCardProps) {
               <div className="flex items-center gap-2">
                 <span 
                   className="text-2xl font-bold text-blue-600"
-                  aria-label={`Starting price: ${service.pricing[0].price.split(' - ')[0]}`}
+                  aria-label={`Starting price: ${service.pricing[0]?.price.split(' - ')[0] || 'Contact for pricing'}`}
                 >
-                  {service.pricing[0].price.split(' - ')[0]}
+                  {service.pricing[0]?.price.split(' - ')[0] || 'Contact us'}
                 </span>
                 {service.pricing.find(tier => tier.popular) && (
                   <Badge variant="secondary" className="text-xs">
