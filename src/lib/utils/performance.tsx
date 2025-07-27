@@ -5,6 +5,7 @@ import React from 'react'
  */
 
 // Lazy loading utility for components
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createLazyComponent<T extends React.ComponentType<any>>(
   importFn: () => Promise<{ default: T }>,
   fallback?: React.ComponentType
@@ -17,7 +18,7 @@ export function createLazyComponent<T extends React.ComponentType<any>>(
     </React.Suspense>
   )
   
-  LazyWrapper.displayName = `LazyComponent(${LazyComponent.displayName || LazyComponent.name || 'Component'})`
+  LazyWrapper.displayName = 'LazyComponent'
   
   return LazyWrapper
 }
@@ -55,9 +56,11 @@ export const useIntersectionObserver = (
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsIntersecting(entry.isIntersecting)
-        if (entry.isIntersecting && !hasIntersected) {
-          setHasIntersected(true)
+        if (entry) {
+          setIsIntersecting(entry.isIntersecting)
+          if (entry.isIntersecting && !hasIntersected) {
+            setHasIntersected(true)
+          }
         }
       },
       {
@@ -78,6 +81,7 @@ export const useIntersectionObserver = (
 }
 
 // Debounce utility for performance
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const debounce = <T extends (...args: any[]) => any>(
   func: T,
   wait: number
@@ -91,6 +95,7 @@ export const debounce = <T extends (...args: any[]) => any>(
 }
 
 // Throttle utility for performance
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const throttle = <T extends (...args: any[]) => any>(
   func: T,
   limit: number
@@ -108,13 +113,17 @@ export const throttle = <T extends (...args: any[]) => any>(
 
 // Memory usage monitoring (development only)
 export const logMemoryUsage = () => {
-  if (typeof window !== 'undefined' && 'performance' in window && 'memory' in (window.performance as any)) {
-    const memory = (window.performance as any).memory
-    console.log('Memory Usage:', {
-      used: `${Math.round(memory.usedJSHeapSize / 1048576)} MB`,
-      total: `${Math.round(memory.totalJSHeapSize / 1048576)} MB`,
-      limit: `${Math.round(memory.jsHeapSizeLimit / 1048576)} MB`
-    })
+  if (typeof window !== 'undefined' && 'performance' in window) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const perf = window.performance as any
+    if ('memory' in perf) {
+      const memory = perf.memory
+      console.log('Memory Usage:', {
+        used: `${Math.round(memory.usedJSHeapSize / 1048576)} MB`,
+        total: `${Math.round(memory.totalJSHeapSize / 1048576)} MB`,
+        limit: `${Math.round(memory.jsHeapSizeLimit / 1048576)} MB`
+      })
+    }
   }
 }
 
@@ -136,7 +145,7 @@ export const performanceMeasure = (name: string, startMark: string, endMark?: st
       }
       
       const measures = window.performance.getEntriesByName(name, 'measure')
-      if (measures.length > 0) {
+      if (measures.length > 0 && measures[0]) {
         console.log(`${name}: ${measures[0].duration.toFixed(2)}ms`)
       }
     } catch (error) {
