@@ -314,7 +314,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                 Project Unavailable
               </h1>
               <p className="text-gray-600 mb-8">
-                Sorry, this project couldn't be loaded. Please try again later.
+                Sorry, this project couldn&apos;t be loaded. Please try again later.
               </p>
               <Link href="/projects">
                 <Button>View All Projects</Button>

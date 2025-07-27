@@ -81,7 +81,7 @@ export function ContactInfo() {
           animate="visible"
           className="space-y-6"
         >
-          {contactMethods.map((method, index) => (
+          {contactMethods.map((method) => (
             <motion.div
               key={method.title}
               variants={itemVariants}

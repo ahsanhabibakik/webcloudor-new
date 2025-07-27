@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { performanceMark, performanceMeasure, logMemoryUsage } from '@/lib/utils/performance'
+import { performanceMark, logMemoryUsage } from '@/lib/utils/performance'
 
 interface PerformanceMonitorProps {
   enabled?: boolean

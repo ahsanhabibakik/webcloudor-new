@@ -111,7 +111,7 @@ export default function Footer({ className, minimal = false }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={"/about" as any}
+                  href={"/about"}
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   About
@@ -119,7 +119,7 @@ export default function Footer({ className, minimal = false }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={"/services" as any}
+                  href={"/services"}
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Services
@@ -127,7 +127,7 @@ export default function Footer({ className, minimal = false }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={"/projects" as any}
+                  href={"/projects"}
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Projects
@@ -181,13 +181,13 @@ export default function Footer({ className, minimal = false }: FooterProps) {
             </p>
             <div className="flex items-center space-x-6">
               <Link
-                href={"/privacy" as any}
+                href={"/privacy"}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
-                href={"/terms" as any}
+                href={"/terms"}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 Terms of Service

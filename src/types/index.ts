@@ -74,7 +74,7 @@ export interface TeamMember {
 
 export interface NavItem {
   title: string
-  href: string | any
+  href: string
   description?: string
 }
 

@@ -140,7 +140,7 @@ export default function Navbar({ className }: NavbarProps) {
                   role="navigation"
                   aria-label="Mobile navigation menu"
                 >
-                  {navItems.map((item, index) => (
+                  {navItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}

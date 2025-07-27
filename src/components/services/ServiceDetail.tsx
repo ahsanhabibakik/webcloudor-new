@@ -79,11 +79,11 @@ function ServiceDetailContent({ service }: ServiceDetailProps) {
             <ScrollReveal delay={0.2}>
               <section>
                 <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-                  What's Included
+                  What&apos;s Included
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {service.features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
+                  {service.features.map((feature) => (
+                    <div key={feature} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700">{feature}</span>
                     </div>
@@ -99,7 +99,7 @@ function ServiceDetailContent({ service }: ServiceDetailProps) {
                   Our Process
                 </h2>
                 <div className="space-y-6">
-                  {service.process.map((step, index) => (
+                  {service.process.map((step) => (
                     <div key={step.step} className="flex gap-4">
                       <div className="flex-shrink-0">
                         <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">
@@ -140,9 +140,9 @@ function ServiceDetailContent({ service }: ServiceDetailProps) {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    {service.pricing.map((tier, index) => (
+                    {service.pricing.map((tier) => (
                       <div 
-                        key={index} 
+                        key={tier.name} 
                         className={`p-4 rounded-lg border ${
                           tier.popular 
                             ? 'border-blue-500 bg-blue-50' 
@@ -164,8 +164,8 @@ function ServiceDetailContent({ service }: ServiceDetailProps) {
                           {tier.price}
                         </p>
                         <ul className="space-y-2">
-                          {tier.features.map((feature, featureIndex) => (
-                            <li key={featureIndex} className="flex items-start gap-2 text-sm">
+                          {tier.features.map((feature) => (
+                            <li key={feature} className="flex items-start gap-2 text-sm">
                               <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                               <span className="text-gray-600">{feature}</span>
                             </li>
@@ -223,7 +223,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
                 Service Unavailable
               </h1>
               <p className="text-gray-600 mb-8">
-                Sorry, this service information couldn't be loaded. Please try again later.
+                This service doesn&apos;t exist or couldn&apos;t be loaded.
               </p>
               <Link href="/services">
                 <Button>View All Services</Button>

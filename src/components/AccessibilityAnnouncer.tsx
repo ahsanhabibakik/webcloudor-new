@@ -122,7 +122,6 @@ export function RouteAnnouncer() {
 
   useEffect(() => {
     const handleRouteChange = () => {
-      const title = document.title
       const path = window.location.pathname
       
       // Extract page name from path

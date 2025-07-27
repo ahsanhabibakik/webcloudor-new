@@ -16,6 +16,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { contactFormSchema, type ContactFormInput } from '@/lib/validations'
 import type { ContactFormData, ProjectCategory, BudgetRange } from '@/types'
 import { Loader2, CheckCircle, AlertCircle } from 'lucide-react'
+import { ZodError } from 'zod';
 
 interface ContactFormProps {
   onSubmit?: (data: ContactFormData) => Promise<void>
@@ -55,15 +56,15 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [submitMessage, setSubmitMessage] = useState('')
 
-  const validateField = (name: string, value: any) => {
+  const validateField = (name: string, value: unknown) => {
     try {
       const fieldSchema = contactFormSchema.shape[name as keyof typeof contactFormSchema.shape]
       if (fieldSchema) {
         fieldSchema.parse(value)
         setErrors(prev => ({ ...prev, [name]: '' }))
       }
-    } catch (error: any) {
-      if (error.errors?.[0]?.message) {
+    } catch (error: unknown) {
+      if (error instanceof ZodError && error.errors[0]?.message) {
         setErrors(prev => ({ ...prev, [name]: error.errors[0].message }))
       }
     }
@@ -142,7 +143,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         timeline: '',
       })
       
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
       

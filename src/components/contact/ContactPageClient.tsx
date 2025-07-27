@@ -100,7 +100,7 @@ export function ContactPageClient() {
                 What Happens Next?
               </h2>
               <p className="text-lg text-slate-600">
-                Here's our simple process to get your project started
+                Here&apos;s our simple process to get your project started
               </p>
             </motion.div>
 
@@ -124,7 +124,7 @@ export function ContactPageClient() {
                   title: 'Project Kickoff',
                   description: 'Once approved, we begin development with regular updates and milestone reviews.'
                 }
-              ].map((step, index) => (
+              ].map((step) => (
                 <motion.div
                   key={step.step}
                   variants={itemVariants}

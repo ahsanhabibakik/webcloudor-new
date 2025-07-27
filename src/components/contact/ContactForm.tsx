@@ -46,16 +46,12 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
     register,
     handleSubmit,
     setValue,
-    watch,
     reset,
     formState: { errors, isValid }
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     mode: 'onChange'
   })
-
-  const projectType = watch('projectType')
-  const budget = watch('budget')
 
   const handleFormSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true)
@@ -241,7 +237,7 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
             <Alert className="border-green-200 bg-green-50">
               <CheckCircle className="h-4 w-4 text-green-600" />
               <AlertDescription className="text-green-800">
-                Thank you for your message! We'll get back to you within 24 hours.
+                Thank you for your message! We&apos;ll get back to you within 24 hours.
               </AlertDescription>
             </Alert>
           )}
