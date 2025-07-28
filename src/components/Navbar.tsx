@@ -46,6 +46,16 @@ interface NavbarProps {
 export default function Navbar({ className }: NavbarProps) {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isScrolled, setIsScrolled] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleLinkClick = () => {
     setIsOpen(false)
@@ -70,7 +80,13 @@ export default function Navbar({ className }: NavbarProps) {
 
   return (
     <nav 
-      className={cn("bg-white shadow-sm border-b sticky top-0 z-40", className)}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled 
+          ? "bg-webcloudor-primary/95 backdrop-blur-lg shadow-lg border-b border-white/10" 
+          : "bg-transparent",
+        className
+      )}
       role="navigation"
       aria-label="Main navigation"
       onKeyDown={handleKeyDown}
@@ -80,9 +96,16 @@ export default function Navbar({ className }: NavbarProps) {
           {/* Logo */}
           <Link 
             href="/" 
-            className="text-xl font-bold text-primary hover:text-primary/80 transition-colors"
+            className={cn(
+              "text-xl font-bold transition-colors duration-300",
+              isScrolled 
+                ? "text-webcloudor-white hover:text-webcloudor-yellow" 
+                : "text-webcloudor-white hover:text-webcloudor-yellow"
+            )}
           >
-            Agency
+            <span className="bg-webcloudor-gradient bg-clip-text text-transparent font-extrabold text-2xl">
+              Webcloudor
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -93,16 +116,18 @@ export default function Navbar({ className }: NavbarProps) {
                 href={item.href as `/` | `/about` | `/services` | `/projects` | `/contact`}
                 aria-current={pathname === item.href ? 'page' : undefined}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary relative py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm",
+                  "text-sm font-medium transition-all duration-300 relative py-2 px-3 rounded-full focus:outline-none focus:ring-2 focus:ring-webcloudor-yellow focus:ring-offset-2",
                   pathname === item.href
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                    ? "text-webcloudor-yellow bg-white/10 backdrop-blur-sm"
+                    : isScrolled 
+                      ? "text-webcloudor-white hover:text-webcloudor-yellow hover:bg-white/10" 
+                      : "text-webcloudor-white hover:text-webcloudor-yellow hover:bg-white/10"
                 )}
               >
                 {item.title}
                 {pathname === item.href && (
                   <span 
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-webcloudor-yellow rounded-full"
                     aria-hidden="true"
                   />
                 )}
@@ -117,7 +142,12 @@ export default function Navbar({ className }: NavbarProps) {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="h-9 w-9"
+                  className={cn(
+                    "h-9 w-9 transition-colors duration-300",
+                    isScrolled 
+                      ? "text-webcloudor-white hover:bg-white/10 hover:text-webcloudor-yellow" 
+                      : "text-webcloudor-white hover:bg-white/10 hover:text-webcloudor-yellow"
+                  )}
                   aria-expanded={isOpen}
                   aria-controls="mobile-menu"
                   aria-label="Toggle navigation menu"

@@ -69,11 +69,11 @@ export function PerformanceMonitor({
 
     // Resource timing monitoring
     const checkResourceTiming = () => {
-      const resources = performance.getEntriesByType('resource')
-      const slowResources = resources.filter((resource: any) => resource.duration > 1000)
+      const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[]
+      const slowResources = resources.filter((resource: PerformanceResourceTiming) => resource.duration > 1000)
       
       if (slowResources.length > 0) {
-        console.warn('Slow resources detected:', slowResources.map((r: any) => ({
+        console.warn('Slow resources detected:', slowResources.map((r: PerformanceResourceTiming) => ({
           name: r.name,
           duration: `${r.duration.toFixed(2)}ms`,
           size: r.transferSize
