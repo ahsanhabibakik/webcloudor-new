@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import tailwindcssAnimate from 'tailwindcss-animate'
 
 const config: Config = {
   content: [
@@ -9,6 +10,34 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Webcloudor Brand Colors
+        webcloudor: {
+          // Primary brand blue - sampled from logo
+          primary: '#1496EF', // RGB: 20, 150, 239
+          'primary-rgb': '20 150 239',
+          
+          // Deep gradient blue for backgrounds
+          deep: '#0066C2', // RGB: 0, 102, 194
+          'deep-rgb': '0 102 194',
+          
+          // Logo shadow/accent blue
+          accent: '#1E63B1', // RGB: 30, 99, 177
+          'accent-rgb': '30 99 177',
+          
+          // Yellow/Gold from gradient
+          yellow: '#FFD43B', // RGB: 255, 212, 59
+          'yellow-rgb': '255 212 59',
+          
+          // Orange from gradient
+          orange: '#FF9000', // RGB: 255, 144, 0
+          'orange-rgb': '255 144 0',
+          
+          // Pure white for contrast
+          white: '#FFFFFF', // RGB: 255, 255, 255
+          'white-rgb': '255 255 255',
+        },
+        
+        // Shadcn/ui colors (keeping for compatibility)
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -52,6 +81,13 @@ const config: Config = {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['monospace'],
       },
+      backgroundImage: {
+        // Webcloudor brand gradients
+        'webcloudor-gradient': 'linear-gradient(135deg, #FFD43B 0%, #FF9000 100%)',
+        'webcloudor-blue-gradient': 'linear-gradient(135deg, #1496EF 0%, #0066C2 100%)',
+        'webcloudor-radial': 'radial-gradient(circle, #1496EF 0%, #0066C2 100%)',
+        'webcloudor-hero': 'linear-gradient(135deg, #1496EF 0%, #1E63B1 50%, #0066C2 100%)',
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
@@ -88,7 +124,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindcssAnimate],
 }
 
 export default config
