@@ -61,7 +61,7 @@ export function AgencyValues() {
   }
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gradient-to-br from-white via-webcloudor-primary/5 to-webcloudor-orange/5">
       <div className="container mx-auto px-4">
         <motion.div
           variants={containerVariants}
@@ -71,10 +71,10 @@ export function AgencyValues() {
           className="max-w-6xl mx-auto"
         >
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Our Values & Culture
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our <span className="bg-webcloudor-gradient bg-clip-text text-transparent">Values & Culture</span>
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               These core principles guide everything we do and shape the way we 
               work with our clients and each other.
             </p>
@@ -87,14 +87,14 @@ export function AgencyValues() {
                 variants={itemVariants}
                 className="group"
               >
-                <div className="bg-slate-50 p-8 rounded-2xl h-full hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-slate-200">
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-100 rounded-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                    <value.icon className="w-7 h-7 text-blue-600 group-hover:text-white" />
+                <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl h-full hover:bg-white hover:shadow-xl transition-all duration-300 border border-webcloudor-primary/10 hover:border-webcloudor-primary/30 hover:scale-105">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-webcloudor-primary/10 rounded-xl mb-6 group-hover:bg-webcloudor-gradient group-hover:text-white transition-all duration-300 shadow-md group-hover:shadow-lg">
+                    <value.icon className="w-7 h-7 text-webcloudor-primary group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-webcloudor-primary transition-colors duration-300">
                     {value.title}
                   </h3>
-                  <p className="text-slate-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed">
                     {value.description}
                   </p>
                 </div>

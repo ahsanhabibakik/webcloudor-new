@@ -55,7 +55,7 @@ export function AgencyStory() {
   }
 
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-webcloudor-primary/5">
       <div className="container mx-auto px-4">
         <motion.div
           variants={containerVariants}
@@ -67,10 +67,10 @@ export function AgencyStory() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Story Content */}
             <motion.div variants={itemVariants}>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Our Story & Approach
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Our <span className="bg-webcloudor-gradient bg-clip-text text-transparent">Story & Approach</span>
               </h2>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
                   Founded in 2019, Modern Web Agency emerged from a simple belief: 
                   that exceptional digital experiences should be accessible to businesses 
@@ -83,7 +83,7 @@ export function AgencyStory() {
                   Our approach is collaborative, transparent, and focused on 
                   understanding your unique challenges and goals.
                 </p>
-                <p className="text-lg text-slate-600 mb-6">
+                <p className="text-lg text-gray-600 mb-6">
                   We don&apos;t just build websites and applications – we craft digital experiences that drive results.
                 </p>
               </div>
@@ -96,18 +96,18 @@ export function AgencyStory() {
                   <motion.div
                     key={stat.label}
                     variants={itemVariants}
-                    className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center"
+                    className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-webcloudor-primary/10 text-center hover:shadow-xl hover:border-webcloudor-primary/20 transition-all duration-300"
                   >
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
-                      <stat.icon className="w-6 h-6 text-blue-600" />
+                    <div className="inline-flex items-center justify-center w-12 h-12 bg-webcloudor-gradient rounded-lg mb-4 shadow-md">
+                      <stat.icon className="w-6 h-6 text-white" />
                     </div>
-                    <div className="text-2xl font-bold text-slate-900 mb-1">
+                    <div className="text-2xl font-bold text-gray-900 mb-1">
                       {stat.number}
                     </div>
-                    <div className="text-sm font-medium text-slate-900 mb-1">
+                    <div className="text-sm font-medium text-webcloudor-primary mb-1">
                       {stat.label}
                     </div>
-                    <div className="text-xs text-slate-600">
+                    <div className="text-xs text-gray-600">
                       {stat.description}
                     </div>
                   </motion.div>

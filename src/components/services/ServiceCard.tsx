@@ -35,7 +35,7 @@ function ServiceCardContent({ service }: ServiceCardProps) {
 
   return (
     <Card 
-      className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group cursor-pointer"
+      className="h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer border-webcloudor-primary/10 hover:border-webcloudor-primary/30"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       role="article"
@@ -45,7 +45,7 @@ function ServiceCardContent({ service }: ServiceCardProps) {
       <CardHeader className="pb-4">
         <div className="flex items-center gap-3 mb-3">
           <div 
-            className="p-2 rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300"
+            className="p-2 rounded-lg bg-webcloudor-primary/10 text-webcloudor-primary group-hover:bg-webcloudor-gradient group-hover:text-white transition-all duration-300 shadow-md group-hover:shadow-lg"
             aria-hidden="true"
           >
             <IconComponent size={24} />
@@ -53,14 +53,14 @@ function ServiceCardContent({ service }: ServiceCardProps) {
           <div className="flex-1">
             <CardTitle 
               id={`service-title-${service.id}`}
-              className="text-xl group-hover:text-blue-600 transition-colors duration-300"
+              className="text-xl group-hover:text-webcloudor-primary transition-colors duration-300"
             >
               {service.title}
             </CardTitle>
           </div>
         </div>
         <CardDescription 
-          className="text-slate-600 leading-relaxed"
+          className="text-gray-600 leading-relaxed"
           aria-describedby={`service-title-${service.id}`}
         >
           {service.shortDescription}
@@ -71,20 +71,20 @@ function ServiceCardContent({ service }: ServiceCardProps) {
         <div className="space-y-4">
           {/* Key Features */}
           <div>
-            <h4 className="font-semibold text-slate-900 mb-2">Key Features:</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Key Features:</h4>
             <ul 
               className="space-y-1"
               role="list"
               aria-label={`Key features of ${service.title} service`}
             >
               {service.features.slice(0, 4).map((feature, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm text-slate-600">
-                  <CheckCircle size={16} className="text-green-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
+                  <CheckCircle size={16} className="text-webcloudor-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>{feature}</span>
                 </li>
               ))}
               {service.features.length > 4 && (
-                <li className="text-sm text-slate-500 italic">
+                <li className="text-sm text-gray-500 italic">
                   +{service.features.length - 4} more features
                 </li>
               )}
@@ -94,16 +94,16 @@ function ServiceCardContent({ service }: ServiceCardProps) {
           {/* Pricing Preview */}
           {service.pricing && service.pricing.length > 0 && (
             <div>
-              <h4 className="font-semibold text-slate-900 mb-2">Starting from:</h4>
+              <h4 className="font-semibold text-gray-900 mb-2">Starting from:</h4>
               <div className="flex items-center gap-2">
                 <span 
-                  className="text-2xl font-bold text-blue-600"
+                  className="text-2xl font-bold bg-webcloudor-gradient bg-clip-text text-transparent"
                   aria-label={`Starting price: ${service.pricing[0]?.price.split(' - ')[0] || 'Contact for pricing'}`}
                 >
                   {service.pricing[0]?.price.split(' - ')[0] || 'Contact us'}
                 </span>
                 {service.pricing.find(tier => tier.popular) && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge variant="secondary" className="text-xs bg-webcloudor-yellow/20 text-webcloudor-accent border-webcloudor-yellow/30">
                     Most Popular
                   </Badge>
                 )}
@@ -122,7 +122,7 @@ function ServiceCardContent({ service }: ServiceCardProps) {
           <Button 
             asChild 
             variant="outline" 
-            className="flex-1 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300"
+            className="flex-1 group-hover:bg-webcloudor-primary group-hover:text-white group-hover:border-webcloudor-primary transition-all duration-300"
             size="sm"
           >
             <Link 

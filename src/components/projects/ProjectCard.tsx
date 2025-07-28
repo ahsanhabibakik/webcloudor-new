@@ -25,15 +25,15 @@ function ProjectCardContent({ project }: ProjectCardProps) {
   const getCategoryColor = (category: Project['category']) => {
     switch (category) {
       case 'web-app':
-        return 'bg-blue-100 text-blue-800 hover:bg-blue-200'
+        return 'bg-webcloudor-primary/10 text-webcloudor-primary hover:bg-webcloudor-primary/20 border-webcloudor-primary/20'
       case 'e-commerce':
-        return 'bg-green-100 text-green-800 hover:bg-green-200'
+        return 'bg-webcloudor-orange/10 text-webcloudor-orange hover:bg-webcloudor-orange/20 border-webcloudor-orange/20'
       case 'corporate':
-        return 'bg-purple-100 text-purple-800 hover:bg-purple-200'
+        return 'bg-webcloudor-accent/10 text-webcloudor-accent hover:bg-webcloudor-accent/20 border-webcloudor-accent/20'
       case 'mobile':
-        return 'bg-orange-100 text-orange-800 hover:bg-orange-200'
+        return 'bg-webcloudor-yellow/10 text-webcloudor-yellow hover:bg-webcloudor-yellow/20 border-webcloudor-yellow/20'
       default:
-        return 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+        return 'bg-gray-100 text-gray-800 hover:bg-gray-200 border-gray-200'
     }
   }
 
@@ -102,7 +102,7 @@ function ProjectCardContent({ project }: ProjectCardProps) {
         {/* Featured Badge */}
         {project.featured && (
           <div className="absolute top-3 left-3">
-            <Badge className="bg-yellow-500 text-yellow-900 hover:bg-yellow-600">
+            <Badge className="bg-webcloudor-yellow text-gray-900 hover:bg-webcloudor-yellow/90 border-0 shadow-md">
               Featured
             </Badge>
           </div>
@@ -121,7 +121,7 @@ function ProjectCardContent({ project }: ProjectCardProps) {
         <div className="mb-4">
           <h3 
             id={`project-title-${project.id}`}
-            className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors"
+            className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-webcloudor-primary transition-colors"
           >
             <Link 
               href={`/projects/${project.id}`}
@@ -150,7 +150,7 @@ function ProjectCardContent({ project }: ProjectCardProps) {
               <Badge
                 key={tech.name}
                 variant="outline"
-                className="text-xs bg-gray-50 hover:bg-gray-100"
+                className="text-xs bg-webcloudor-primary/5 hover:bg-webcloudor-primary/10 border-webcloudor-primary/20 text-webcloudor-primary"
                 role="listitem"
               >
                 {tech.name}

@@ -10,6 +10,17 @@ export default function TestPage() {
           Tailwind CSS Test Page
         </h1>
         
+        {/* Hero Showcase Link */}
+        <div className="mb-8 text-center">
+          <Link 
+            href="/hero-test"
+            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-webcloudor-blue to-webcloudor-purple text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            🎨 Hero Component Showcase
+          </Link>
+          <p className="text-gray-600 mt-2 text-sm">Compare and select different Hero designs</p>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Test Card 1 */}
           <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">

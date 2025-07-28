@@ -158,12 +158,16 @@ export default function Navbar({ className }: NavbarProps) {
               </SheetTrigger>
               <SheetContent 
                 side="right" 
-                className="w-[300px] sm:w-[400px]"
+                className="w-[300px] sm:w-[400px] bg-white/95 backdrop-blur-lg"
                 id="mobile-menu"
                 aria-labelledby="mobile-menu-title"
               >
                 <SheetHeader>
-                  <SheetTitle id="mobile-menu-title" className="text-left">Navigation</SheetTitle>
+                  <SheetTitle id="mobile-menu-title" className="text-left text-gray-900">
+                    <span className="bg-webcloudor-gradient bg-clip-text text-transparent font-bold">
+                      Navigation
+                    </span>
+                  </SheetTitle>
                 </SheetHeader>
                 <nav 
                   className="flex flex-col space-y-4 mt-6"
@@ -178,10 +182,10 @@ export default function Navbar({ className }: NavbarProps) {
                       onKeyDown={(e) => handleMenuItemKeyDown(e, item.href)}
                       aria-current={pathname === item.href ? 'page' : undefined}
                       className={cn(
-                        "text-sm font-medium transition-colors hover:text-primary px-2 py-3 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+                        "text-sm font-medium transition-all duration-300 px-3 py-3 rounded-lg hover:bg-webcloudor-primary/10 focus:outline-none focus:ring-2 focus:ring-webcloudor-primary focus:ring-offset-2 hover:scale-105",
                         pathname === item.href
-                          ? "text-primary bg-accent"
-                          : "text-muted-foreground"
+                          ? "text-webcloudor-primary bg-webcloudor-primary/10 border-l-4 border-webcloudor-primary"
+                          : "text-gray-700 hover:text-webcloudor-primary"
                       )}
                       tabIndex={0}
                     >
