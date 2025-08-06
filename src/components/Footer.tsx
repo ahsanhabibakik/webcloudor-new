@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Mail, Phone, MapPin, Github, Twitter, Linkedin, Sparkles, ArrowUp } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import type { Route } from "next"
 
 interface FooterProps {
   className?: string
@@ -248,13 +249,13 @@ export default function Footer({ className, minimal = false }: FooterProps) {
             </p>
             <div className="flex items-center space-x-6">
               <Link
-                href={"/privacy" as any}
+                href={"/privacy_policy" as Route}
                 className="text-sm text-gray-400 hover:text-webcloudor-blue transition-colors duration-300"
               >
                 Privacy Policy
               </Link>
               <Link
-                href={"/terms" as any}
+                href={"/terms" as Route}
                 className="text-sm text-gray-400 hover:text-webcloudor-blue transition-colors duration-300"
               >
                 Terms of Service

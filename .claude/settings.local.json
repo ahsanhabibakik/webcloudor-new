@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint:*)",
+      "Bash(del /f \"src\\app\\privacy_policy\\page-simple.tsx\")",
+      "Bash(rm:*)",
+      "Bash(npm run build:*)"
+    ],
+    "deny": []
+  }
+}

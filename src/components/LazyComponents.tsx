@@ -2,6 +2,7 @@
 
 import { lazy, Suspense } from 'react'
 import { SkeletonLoader, ImageSkeleton } from './LazyLoad'
+import type { Project, TeamMember, ContactFormData } from '@/types'
 
 // Lazy load heavy components that are not immediately visible
 export const LazyProjectDetail = lazy(() => 
@@ -17,7 +18,11 @@ export const LazyTeamGrid = lazy(() =>
 )
 
 // Wrapper components with appropriate fallbacks
-export function LazyProjectDetailWrapper(props: any) {
+interface ProjectDetailWrapperProps {
+  project: Project
+}
+
+export function LazyProjectDetailWrapper(props: ProjectDetailWrapperProps) {
   return (
     <Suspense fallback={
       <div className="space-y-6">
@@ -35,7 +40,11 @@ export function LazyProjectDetailWrapper(props: any) {
   )
 }
 
-export function LazyContactFormWrapper(props: any) {
+interface ContactFormWrapperProps {
+  onSubmit?: (data: ContactFormData) => Promise<void>
+}
+
+export function LazyContactFormWrapper(props: ContactFormWrapperProps) {
   return (
     <Suspense fallback={
       <div className="space-y-4">
@@ -58,7 +67,11 @@ export function LazyContactFormWrapper(props: any) {
   )
 }
 
-export function LazyTeamGridWrapper(props: any) {
+interface TeamGridWrapperProps {
+  members: TeamMember[]
+}
+
+export function LazyTeamGridWrapper(props: TeamGridWrapperProps) {
   return (
     <Suspense fallback={
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

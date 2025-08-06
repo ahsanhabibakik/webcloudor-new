@@ -31,7 +31,7 @@ function PrivacyPolicyContent() {
       {/* Content Section */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
         <p>
-          <b>The {request} </b>App is free to use. By using the app, users agree to the collection and use of their personal information for the purpose of improving the service. The information collected will not be shared with others outside of what is outlined in the Privacy Policy. The terms used in the Privacy Policy are also defined in the app's Terms and Conditions.
+          <b>The {request} </b>App is free to use. By using the app, users agree to the collection and use of their personal information for the purpose of improving the service. The information collected will not be shared with others outside of what is outlined in the Privacy Policy. The terms used in the Privacy Policy are also defined in the app&apos;s Terms and Conditions.
         </p>
 
         <h5 style={{ color: '#333', marginTop: '2rem' }}>Information Collection and Use</h5>
@@ -49,15 +49,15 @@ function PrivacyPolicyContent() {
           <li>AdMob</li>
         </ul>
         <p>
-          I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol ("IP") address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
+          I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (&ldquo;IP&rdquo;) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
         </p>
 
         <h5 style={{ color: '#333', marginTop: '2rem' }}>Cookies</h5>
         <p>
-          Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
+          Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device&apos;s internal memory.
         </p>
         <p>
-          This Service does not use these "cookies" explicitly. However, the app may use third-party code and libraries that use "cookies" to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+          This Service does not use these &ldquo;cookies&rdquo; explicitly. However, the app may use third-party code and libraries that use &ldquo;cookies&rdquo; to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
         </p>
 
         <h5 style={{ color: '#333', marginTop: '2rem' }}>Service Providers</h5>
@@ -84,7 +84,7 @@ function PrivacyPolicyContent() {
           This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
         </p>
 
-        <h5 style={{ color: '#333', marginTop: '2rem' }}>Children's Privacy</h5>
+        <h5 style={{ color: '#333', marginTop: '2rem' }}>Children&apos;s Privacy</h5>
         <p>
           These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13 years of age. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do the necessary actions.
         </p>
@@ -105,7 +105,7 @@ function PrivacyPolicyContent() {
           Email: cloudwavetech20@gmail.com
         </p>
         <p>
-          If you believe our processing of your personal data infringes data protection laws, you have a legal right to initiate a complaint with a supervisory authority. Don't hesitate to contact us if you find any issue.
+          If you believe our processing of your personal data infringes data protection laws, you have a legal right to initiate a complaint with a supervisory authority. Don&apos;t hesitate to contact us if you find any issue.
         </p>
 
         <h5 style={{ color: '#333', marginTop: '2rem' }}>Contact Us</h5>
