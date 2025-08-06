@@ -1,0 +1,11 @@
+.jumbotron {
+  background: url('/simple-header-blended-small.png') no-repeat center center;
+  background-size: cover;
+  color: navajowhite;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.content {
+  padding: 20px;
+}
